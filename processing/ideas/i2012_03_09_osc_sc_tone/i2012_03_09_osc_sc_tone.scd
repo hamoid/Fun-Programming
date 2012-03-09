@@ -13,7 +13,7 @@ Server.default = s = Server.internal.boot
 
     // Create a synth definition
     SynthDef(\p55synth, {
-        // The frequenty and volume values come from a global bus with two channels called b. 
+        // The frequency and volume values come from a global bus with two channels called b. 
         // lag() smoothes the values out. Try without lag() to see the difference.
         // lag() is used because Processing is sending new values only at 10 frames per second.
         var freq = b.kr(1, 0).lag(0.3); 
@@ -22,7 +22,7 @@ Server.default = s = Server.internal.boot
     }).load(s);
 
     // This makes SuperCollider listen to OSC messages coming from Processing.
-    // Don't evaluate this more than once withou using the clean up below.
+    // Don't evaluate this more than once without using the clean up below.
     // Otherwise you will have several overlapping OSC responders.
     r = OSCresponderNode(nil, '/pitchvol', { arg time, resp, msg; 
         b.set(msg[1], msg[2]);
