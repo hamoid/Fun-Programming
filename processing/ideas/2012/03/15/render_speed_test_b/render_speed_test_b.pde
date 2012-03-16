@@ -1,3 +1,10 @@
+// This version has each thread render its own PGraphic,
+// when it finishes it merges it on top of a buffer PGraphic,
+// and when all threads have contributed, the result is copied
+// to the main display.
+
+// Using the buffer PGraphic does not seem to make things faster.
+
 // Test values
 int pThreads = 4;
 int[] pOpsPerFrame = { 1200, 1400, 1600, 1800 };
