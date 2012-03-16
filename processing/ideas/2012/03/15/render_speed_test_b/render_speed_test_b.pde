@@ -3,7 +3,8 @@
 // and when all threads have contributed, the result is copied
 // to the main display.
 
-// Using the buffer PGraphic does not seem to make things faster.
+// I wanted to try this to see if separating image() calls in time
+// would improve speed, but image() doesn't seem to be the bottleneck.
 
 // Test values
 int pThreads = 4;
@@ -41,6 +42,8 @@ void setup() {
   //39 real fps, frameRate=45.25, [2000, 2000, 2000] op. per frame, req. frameRate: 100, sleep 8ms
   //31 real fps, frameRate=29.99, [3000, 3000] op. per frame, req. frameRate: 100, sleep 8ms
   //26 real fps, frameRate=27.32, [6000] op. per frame, req. frameRate: 100, sleep 8ms
+  //Using an intermediate buffer:
+  //40 real fps, frameRate=44.89, [1200, 1400, 1600, 1800] op. per frame, req. frameRate: 100, sleep 8ms
 
   int tFrom = 0;
   int tTo = 0;
