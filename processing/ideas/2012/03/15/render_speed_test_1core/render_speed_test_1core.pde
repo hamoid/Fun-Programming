@@ -1,3 +1,5 @@
+// 26 real fps, frameRate=27.48, 6000 op. per frame, req. frameRate: 100
+
 int f = 0;
 
 void setup() {
@@ -5,6 +7,7 @@ void setup() {
   colorMode(HSB, 1);
   noStroke();
   smooth();
+  frameRate(100);
 }
 
 void draw() {
@@ -24,8 +27,9 @@ void draw() {
     }
   }
 
-  if (f++ % 50 == 0) { // 39 on 1.51, 26 on 2.0a4
-    println((1000*f / millis()) + " : " + (1000*frameCount / millis()) + " : " + frameRate );
+  if (f++ % 300 == 299) {
+    println((1000*f / millis()) + " real fps, frameRate=" + nfc(frameRate, 2) + 
+      ", " + (10*width) + " op. per frame, req. frameRate: " + 100);
   }
 }
 
