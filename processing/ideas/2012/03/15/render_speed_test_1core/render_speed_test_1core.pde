@@ -23,7 +23,7 @@ void draw() {
     fill(r*1.3, 1, 1);
     translate(width/2 + x, height/2 +y);
     rotate(10*r);
-    rect(0, 0, 1, 60*r);
+    rect(0, 0, 1, 30);
     resetMatrix();
   }
 

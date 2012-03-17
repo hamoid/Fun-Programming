@@ -19,11 +19,8 @@
 
   - pFrameRate is used by frameRate().
 
-  - pSleepMs is the amount of milliseconds each thread sleeps on its main loop.
-
-  If pFrameRate is low, say 30, it will not matter how small pSleepMs is: the
-  animation will be slow. This is unexpected since noLoop() has been called
-  and redraw() updates the display on demand.
+  If pFrameRate is low, say 30, the animation will be slow. This is 
+  unexpected since noLoop() has been called and redraw() updates the display on demand.
 
   The Renderer class contains a PGraphics element where it will be drawing.
   pWhichReady contains single bits that indicate if each thread is done rendering.
@@ -31,22 +28,22 @@
   adds all layers on top of the main display.
 
   Results in Processing 2.0a4:
-  41 real fps, frameRate=41.23, [1000, 1000, 1000, 1000, 1000, 1000] op. per frame, req. frameRate: 100, sleep 8ms
-  41 real fps, frameRate=42.51, [1200, 1200, 1200, 1200, 1200] op. per frame, req. frameRate: 100, sleep 8ms
-  42 real fps, frameRate=46.42, [1100, 1900, 1100, 1900] op. per frame, req. frameRate: 100, sleep 8ms
-  40 real fps, frameRate=41.31, [1500, 1500, 1500, 1500] op. per frame, req. frameRate: 100, sleep 8ms
-  40 real fps, frameRate=43.52, [1800, 2000, 2200] op. per frame, req. frameRate: 100, sleep 8ms
-  39 real fps, frameRate=45.25, [2000, 2000, 2000] op. per frame, req. frameRate: 100, sleep 8ms
-  31 real fps, frameRate=29.99, [3000, 3000] op. per frame, req. frameRate: 100, sleep 8ms
-  26 real fps, frameRate=27.32, [6000] op. per frame, req. frameRate: 100, sleep 8ms
+  41 real fps, frameRate=41.23, [1000, 1000, 1000, 1000, 1000, 1000] op. per frame, req. frameRate: 100
+  41 real fps, frameRate=42.51, [1200, 1200, 1200, 1200, 1200] op. per frame, req. frameRate: 100
+  42 real fps, frameRate=46.42, [1100, 1900, 1100, 1900] op. per frame, req. frameRate: 100
+  40 real fps, frameRate=41.31, [1500, 1500, 1500, 1500] op. per frame, req. frameRate: 100
+  40 real fps, frameRate=43.52, [1800, 2000, 2200] op. per frame, req. frameRate: 100
+  39 real fps, frameRate=45.25, [2000, 2000, 2000] op. per frame, req. frameRate: 100
+  31 real fps, frameRate=29.99, [3000, 3000] op. per frame, req. frameRate: 100
+  26 real fps, frameRate=27.32, [6000] op. per frame, req. frameRate: 100
 
   Intermediate buffer:
   I tried a different version that had an intermediate buffer where each
   thread writes directly, with the idea of splitting the action of blending
   layers also in threads. The results were:
-  40 real fps, frameRate=44.89, [1200, 1400, 1600, 1800] op. per frame, req. frameRate: 100, sleep 8ms
+  40 real fps, frameRate=44.89, [1200, 1400, 1600, 1800] op. per frame, req. frameRate: 100
   Using no intermediate buffer I get the same values:
-  40 real fps, frameRate=43.15, [1200, 1400, 1600, 1800] op. per frame, req. frameRate: 100, sleep 8ms
+  40 real fps, frameRate=43.15, [1200, 1400, 1600, 1800] op. per frame, req. frameRate: 100
 
   Assumptions:
   - There is a repetitive rendering task to be done that can be split in
@@ -102,17 +99,15 @@ int pThreads = 4; int[] pOpsPerFrame = { 2200, 2400, 2600, 2800 }; // Four threa
 //int pThreads = 3; int[] pOpsPerFrame = { 3333, 3333, 3334 }; // Three threads doing about 3333 iterations each.
 //int pThreads = 2; int[] pOpsPerFrame = { 5000 }; // Two threads doing 5000 iterations each.
 //int pThreads = 1; int[] pOpsPerFrame = { 10000 }; // One thread doing 10000 iterations.
+
 int pFrameRate = 100;                // Default 100. Try with low values like 5  and 30.
-long pSleepMs = 6;                   // Thread sleep time in milliseconds. Try with values between 5 and 20.
 
 // Global variables
 Renderer[] pRenderer = new Renderer[pThreads];
-float pTime;                         // a time variable used for generating graphics
-int pWhichReady = 0;                 // 0000 in binary
-int pAllReady = (1 << pThreads) - 1; // 1111 in binary if we have 4 threads
-boolean pDrawingLayers = false;      // true while we are drawing the result on the main display
-int[] pOpsList = new int[0];         // used just for logging
-int f = 0;                           // should be equal to frameCount
+float pTime;                         // A time variable used for generating graphics
+int f = 0;                           // In theory, equal to frameCount
+int pThreadsReady = 0;               // How many threads have finished
+int[] pOpsList = new int[0];         // Used just for logging
 
 void setup() {
   size(600, 300);
@@ -122,15 +117,15 @@ void setup() {
 
   int tFrom = 0;
   int tTo = 0;
-  // create render threads assigning each a work range
+  // Create render threads assigning each a work range
   for (int i=0; i<pThreads; i++) {
     int tOps = pOpsPerFrame[i % pOpsPerFrame.length];
     tTo = tFrom + tOps - 1;
-    pRenderer[i] = new Renderer(1 << i, tFrom, tTo);
+    pRenderer[i] = new Renderer(tFrom, tTo);
     tFrom = tTo + 1;
-    pOpsList = append(pOpsList, tOps); // used for logging
+    pOpsList = append(pOpsList, tOps); // Used for logging
   }
-  // after creating the threads, start them
+  // After creating the threads, start them
   for (int i=0; i<pThreads; i++) {
     pRenderer[i].start();
   }
@@ -140,23 +135,21 @@ void setup() {
 
 void draw() {
 }
-// When all threads have rendered their part we will draw them on the main display.
+// Draw all layers on the main display.
 void drawLayers() {
-  pDrawingLayers = true;
   background(0);
   for (int i=0; i<pThreads; i++) {
-    pRenderer[i].drawLayer();
+    image(pRenderer[i].pGfx, 0, 0);   
   }
   pTime = frameCount / 88.0;
-  pWhichReady = 0; // Reset progress indicator. No layers are ready.
-  pDrawingLayers = false;
+  pThreadsReady = 0; // Reset progress indicator. No layers are ready.
+  g.notifyAll(); // Restart all threads
   redraw();
 
   // Log information once in a while
   if (f++ % 200 == 150) {
     println(nfc(1000.0*f / millis(), 1) + " real fps, frameRate=" + nfc(frameRate, 1) +
-      ", " + Arrays.toString(pOpsList) + " op. per frame, req. frameRate: " + pFrameRate +
-      ", sleep " + pSleepMs + "ms");
+      ", " + Arrays.toString(pOpsList) + " op. per frame, req. frameRate: " + pFrameRate);
   }
 }
 
@@ -166,9 +159,8 @@ class Renderer extends Thread {
   int pOpTo;
   int pID;
 
-  Renderer (int tID, int tOpFrom, int tOpTo) {
-    println("New renderer id:" + tID + ", will render from " + tOpFrom + " to " + tOpTo);
-    pID = tID;
+  Renderer (int tOpFrom, int tOpTo) {
+    println("New renderer will render from " + tOpFrom + " to " + tOpTo);
     pOpFrom = tOpFrom;
     pOpTo = tOpTo;
 
@@ -181,53 +173,34 @@ class Renderer extends Thread {
   }
   void run() {
     while (true) {
-      boolean tThreadDone = false;
+      // Here is where all the drawing takes place.
+      pGfx.beginDraw();
+      pGfx.background(0, 0); // Reset layer to transparent
+      for (int i = pOpFrom; i <= pOpTo; i++) {
+        float x = width*sin(i / 100.0 + pTime)*0.4;
+        float y = height*cos(i / 100.0 + pTime)*0.4;
+        float r = noise(x/20, y/20, pTime); // noise() gives randomly a division by 0 error. Try again.
+        pGfx.fill(r*1.3, 1, 1);
+        pGfx.translate(width/2 + x, height/2 +y);
+        pGfx.rotate(10*r);
+        pGfx.rect(0, 0, 1, 30);
+        pGfx.resetMatrix();
+      }
+      pGfx.endDraw();
 
-      synchronized(g) {
-        // Decide if it's time to flatten the layers
-        if (!pDrawingLayers && pWhichReady == pAllReady) {
+      synchronized(g) {       
+        // All threads done?
+        if (++pThreadsReady == pThreads) {
           drawLayers();
-        } // If this layer is ready don't draw it again
-        else if ((pWhichReady & pID) != 0) {
-          tThreadDone = true;
+        } else {
+          try {
+            g.wait();
+          } catch (Exception e) {
+            println("Oh " + e);
+          }
         }
-      }
-      if (!tThreadDone) {
-        // Here is where all the drawing takes place.
-        pGfx.beginDraw();
-        for (int i = pOpFrom; i <= pOpTo; i++) {
-          float x = width*sin(i / 100.0 + pTime)*0.4;
-          float y = height*cos(i / 100.0 + pTime)*0.4;
-          float r = noise(x/20, y/20, pTime);
-          pGfx.fill(r*1.3, 1, 1);
-          pGfx.translate(width/2 + x, height/2 +y);
-          pGfx.rotate(10*r);
-          pGfx.rect(0, 0, 1, 60*r);
-          pGfx.resetMatrix();
-        }
-        pGfx.endDraw();
-
-        synchronized(g) {
-          // mark this thread as done
-          pWhichReady |= pID;
-        }
-      }
-      try {
-        // wait a few ms before continuing
-        sleep(pSleepMs);
-      }
-      catch (Exception e) {
-        println("Oh " + e);
       }
     }
-  }
-  // Time to drop the current layer on the main display
-  void drawLayer() {
-    image(pGfx, 0, 0);
-
-    pGfx.beginDraw();
-    pGfx.background(0, 0); // Reset layer to transparent
-    pGfx.endDraw();
   }
   void quit() {
     interrupt();
