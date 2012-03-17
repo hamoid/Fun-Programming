@@ -1,4 +1,4 @@
-// 26 real fps, frameRate=27.48, 6000 op. per frame, req. frameRate: 100
+//12 real fps, frameRate=13.68, 10000 op. per frame, req. frameRate: 100
 
 int f = 0;
 
@@ -13,23 +13,23 @@ void setup() {
 void draw() {
   background(0);
 
-  float fc = frameCount / 88.0;
+  float pTime = frameCount / 88.0;
 
-  for (int y = 0; y < 10; y++) {
-    float they = noise(y/10.0);
-    for (int x=0; x < width; x++) {
-      float thex = noise(x/50.0);
-      fill((they + thex + fc) % 1.0, 1, 1);
-      translate(x, 50+y*20);
-      rotate(6*they - 6*thex - fc);
-      rect(0, 0, 1, 15);
-      resetMatrix();
-    }
+  int i;
+  for (i = 0; i <= 9999; i++) {
+    float x = width*sin(i / 100.0 + pTime)*0.4;
+    float y = height*cos(i / 100.0 + pTime)*0.4;
+    float r = noise(x/20, y/20, pTime);
+    fill(r*1.3, 1, 1);
+    translate(width/2 + x, height/2 +y);
+    rotate(10*r);
+    rect(0, 0, 1, 60*r);
+    resetMatrix();
   }
 
-  if (f++ % 300 == 299) {
-    println((1000*f / millis()) + " real fps, frameRate=" + nfc(frameRate, 2) + 
-      ", " + (10*width) + " op. per frame, req. frameRate: " + 100);
+  if (f++ % 200 == 99) {
+    println(nfc(1000.0*f / millis(), 1) + " real fps, frameRate=" + nfc(frameRate, 1) + 
+      ", " + i + " op. per frame, req. frameRate: " + 100);
   }
 }
 

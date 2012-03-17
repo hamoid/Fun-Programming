@@ -51,45 +51,57 @@
   Assumptions:
   - There is a repetitive rendering task to be done that can be split in
     smaller parts which do not depend on each other.
+  - The JAVA2D graphic mode is used.
 
   Conclusions:
   - The speed increase one gets from parallel rendering in Processing using
     this technique is not proportional to the number of threads.
   - In a test laptop with 4 cores and 2.6 Ghz using one thread per core gives the
-    best results:
-    26 frames per second using no threads.
-    42 frames per second using 4 unevenly loaded threads.
-  - It seems that unevenly loading the threads results in higher frames per second.
+    best results. In one example with 6000 iterations:
+    26 fps using 1 thread, 42 fps using 4 unevenly loaded threads.
+    In a different example with 10000 iterations:
+    13 fps using 1 thread, 22 fps using 4 unevenly loaded threads
+  - It seems that unevenly loading the threads results in a slightly higher frame rate.
   - There is little frame rate differenece in using 3, 4, 5 or 6 threads in the
     test laptop, which is unexpected. It seems that the benefit of distributing
     the work in threads is closely compensated by the added overhead of blending
-    the resulting bitmaps together.
+    the resulting bitmaps together. Another thing to take into account is that
+    when 3 threads are created, there are at least 4 present because the main
+    program loop runs in its own thread.
+  - Running on 1 thread, a program renders more frames per second in Processing 1.5.1 
+    than in version 2.0a4 (about 23% higher rate).
+  - Running in 4 threads, a program achieves the same frame rate in both 1.5.1 and 2.0a4.
+  - When the complexity and / or number of iterations is high enough, using several
+    rendering threads may provide a few extra frames per second. For instance, after 
+    increasing the iterations to 10000 and changing the drawing algorithm, using one 
+    thread gives up to 13 fps, while four threads achieve 22 fps, both in 1.5.1 and 2.0a4.
+    That's a 70% increase.
   - Moving the blending of resulting images away from the main program thread
-    into each Renderer thread produces no change in frame rate. This was tested
-    by adding an extra PGraphics where threads draw their results when done,
-    composing each new layer on top of the existing layers created by other threads.
+    into each Renderer thread seem to produce no change in the frame rate. This was tested
+    by adding an extra PGraphics used by threads to draw their results when done,
+    composing each new layer on top of existing layers created by other threads.
     When all threads had contributed, the result was copied onto the main display,
-    which means one extra step, but less work for the main thread.
-
+    which means one extra image() operation but less work for the main thread. 
+    It was not tested with an increased number of iterations, which might prove this
+    extra step is useful under certain conditions.
+  
   Notes:
   - The results may be more or less favorable depending on the computer, amount of
-    cores and complexity of the render loop.
+    cores and complexity and type of the render loop.
 
   Discussion:
   - http://forum.processing.org/topic/can-4-threads-draw-in-one-display-at-once
 */
 
 
-// These test values can be changed to see the effect on frame rate.
-int pThreads = 4;                    // Try with 1 .. 16.
-int[] pOpsPerFrame = { 1100, 1900 }; // The total amount of operations should
-                // stay equal between tests. For example:
-                // pThreads = 4; pOpsPerFrame = { 1500 };  ... 4 x 1500 = 6000
-                // pThreads = 3; pOpsPerFrame = { 2000 };  ... 3 x 2000 = 6000
-                // pThreads = 2; pOpsPerFrame = { 3000 };  ... 2 x 3000 = 6000
-                // pThreads = 1; pOpsPerFrame = { 6000 };  ... 1 x 6000 = 6000
-                // pThreads = 4; pOpsPerFrame = { 1200, 1800 };              ... 1200 + 1800 + 1200 + 1800 = 6000
-                // pThreads = 4; pOpsPerFrame = { 1000, 1300, 1700, 2000 };  ... 1000 + 1300 + 1700 + 2000 = 6000
+// These test values can be changed to observe the effect on frame rate. 
+// The total iteration count should not change between tests if you want to compare results. 
+// These examples always do 10000 iterations.
+int pThreads = 4; int[] pOpsPerFrame = { 2200, 2400, 2600, 2800 }; // Four threads, uneven load.
+//int pThreads = 4; int[] pOpsPerFrame = { 2500 }; // Four threads, even load.
+//int pThreads = 3; int[] pOpsPerFrame = { 3333, 3333, 3334 }; // Three threads doing about 3333 iterations each.
+//int pThreads = 2; int[] pOpsPerFrame = { 5000 }; // Two threads doing 5000 iterations each.
+//int pThreads = 1; int[] pOpsPerFrame = { 10000 }; // One thread doing 10000 iterations.
 int pFrameRate = 100;                // Default 100. Try with low values like 5  and 30.
 long pSleepMs = 6;                   // Thread sleep time in milliseconds. Try with values between 5 and 20.
 
@@ -141,8 +153,8 @@ void drawLayers() {
   redraw();
 
   // Log information once in a while
-  if (f++ % 300 == 299) {
-    println((1000*f / millis()) + " real fps, frameRate=" + nfc(frameRate, 2) +
+  if (f++ % 200 == 150) {
+    println(nfc(1000.0*f / millis(), 1) + " real fps, frameRate=" + nfc(frameRate, 1) +
       ", " + Arrays.toString(pOpsList) + " op. per frame, req. frameRate: " + pFrameRate +
       ", sleep " + pSleepMs + "ms");
   }
@@ -184,15 +196,13 @@ class Renderer extends Thread {
         // Here is where all the drawing takes place.
         pGfx.beginDraw();
         for (int i = pOpFrom; i <= pOpTo; i++) {
-          int y = int(i / width);
-          int x = i % width;
-          float they = noise(y/10.0); // noise takes away 5 fps
-          float thex = noise(x/50.0);
-
-          pGfx.fill((they + thex + pTime) % 1.0, 1, 1);
-          pGfx.translate(x, 50+y*20);
-          pGfx.rotate(6*they - 6*thex - pTime);
-          pGfx.rect(0, 0, 1, 15);
+          float x = width*sin(i / 100.0 + pTime)*0.4;
+          float y = height*cos(i / 100.0 + pTime)*0.4;
+          float r = noise(x/20, y/20, pTime);
+          pGfx.fill(r*1.3, 1, 1);
+          pGfx.translate(width/2 + x, height/2 +y);
+          pGfx.rotate(10*r);
+          pGfx.rect(0, 0, 1, 60*r);
           pGfx.resetMatrix();
         }
         pGfx.endDraw();
