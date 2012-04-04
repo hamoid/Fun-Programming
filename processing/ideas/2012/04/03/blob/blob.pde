@@ -1,13 +1,16 @@
+// In this sketch I test curveVertex
+// Notice that three Vertices are drawn 3 times to make it a closed shape.
+ 
 int Segments = 11;
-
+ 
 // here we store all the curve points
 float x[] = new float[Segments];
 float y[] = new float[Segments];
-
+ 
 // current blob location
 float currentx;
 float currenty;
-
+ 
 void setup() {
   size(500, 500);
   smooth();
@@ -30,12 +33,12 @@ void draw() {
   // the distance from the center is random and depends
   // on the current frameCount.
   for (int i=0; i<Segments; i++) {
-    float a = float(i) / float(Segments) * TWO_PI;
-    float r = 20 + 180 * noise(i, frameCount/20.0);        
-    x[i] = currentx + sin(a) * r;
-    y[i] = currenty + cos(a) * r;
+    float angle = float(i) / float(Segments) * TWO_PI;
+    float distance = 20 + 180 * noise(i, frameCount/20.0);        
+    x[i] = currentx + sin(angle) * distance;
+    y[i] = currenty + cos(angle) * distance;
   }
-
+ 
   // draw the blob  
   beginShape();
   for (int i=0; i<Segments+3; i++) {
@@ -43,4 +46,3 @@ void draw() {
   }
   endShape();
 }
-
