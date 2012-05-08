@@ -21,8 +21,8 @@
 # In three words: run this script :)
 # In more words:
 
-# 1. Select and copy the next line (every character from wget until the end of the line)
-#    wget https://raw.github.com/hamoid/Fun-Programming/master/supercollider/scripts/sc3install.sh; bash sc3install.sh
+# 1. Select and copy the next line (every character from 'wget' until the end of the line)
+#    wget https://raw.github.com/hamoid/Fun-Programming/master/scripts/sc3i.sh; bash sc3i.sh
 # 2. Press Ctrl+Alt+T to open a terminal.
 # 3. Press Ctrl+Shift+V to paste (not Ctrl+V!) and press ENTER.
 
