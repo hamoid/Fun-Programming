@@ -1,3 +1,6 @@
+
+/* @pjs preload="big.png"; */
+
 float d = 20;
 PImage back_image;
 
