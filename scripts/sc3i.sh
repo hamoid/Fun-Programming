@@ -88,12 +88,12 @@ read -p "Dowload SuperCollider gedit 3 plugin (y/n)? " answer
 [[ $answer =~ ^([yY])$ ]] && mkdir -p ~/.local/share/gedit/plugins
 
 # These two files go inside the folder we just created
-[[ $answer =~ ^([yY])$ ]] && wget -O ~/.local/share/gedit/plugins/supercollider.plugin "https://raw.github.com/supercollider-team/supercollider/master/editors/sced/sced3/supercollider.plugin.in"
-[[ $answer =~ ^([yY])$ ]] && wget -O ~/.local/share/gedit/plugins/supercollider.py "https://raw.github.com/supercollider-team/supercollider/master/editors/sced/sced3/supercollider.py"
+[[ $answer =~ ^([yY])$ ]] && wget -O ~/.local/share/gedit/plugins/supercollider.plugin "https://raw.github.com/supercollider/supercollider/master/editors/sced/sced3/supercollider.plugin.in"
+[[ $answer =~ ^([yY])$ ]] && wget -O ~/.local/share/gedit/plugins/supercollider.py "https://raw.github.com/supercollider/supercollider/master/editors/sced/sced3/supercollider.py"
 
 # These will ask for your password, because the files are written to /usr/share/
-[[ $answer =~ ^([yY])$ ]] && sudo wget -O /usr/share/gtksourceview-3.0/language-specs/supercollider.lang "https://raw.github.com/supercollider-team/supercollider/master/editors/sced/data/supercollider.lang"
-[[ $answer =~ ^([yY])$ ]] && sudo wget -O /usr/share/mime/packages/supercollider.xml "https://raw.github.com/supercollider-team/supercollider/master/editors/sced/data/supercollider.xml"
+[[ $answer =~ ^([yY])$ ]] && sudo wget -O /usr/share/gtksourceview-3.0/language-specs/supercollider.lang "https://raw.github.com/supercollider/supercollider/master/editors/sced/data/supercollider.lang"
+[[ $answer =~ ^([yY])$ ]] && sudo wget -O /usr/share/mime/packages/supercollider.xml "https://raw.github.com/supercollider/supercollider/master/editors/sced/data/supercollider.xml"
 
 echo ""
 echo "I hope it worked out!"
