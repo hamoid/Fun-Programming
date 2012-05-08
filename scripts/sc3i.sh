@@ -31,7 +31,7 @@
 # 5. Enter your password when asked.
 
 # 6. You may get asked about activating Jack's realtime priority.
-#    If find changing Ubuntu settings complicated, type n and press ENTER.
+#    If you find changing Ubuntu settings complicated, type n and press ENTER.
 
 # 7. You will be asked if you want to install the gedit 3 plugin.
 #    Type y if it's not yet installed and press ENTER.
