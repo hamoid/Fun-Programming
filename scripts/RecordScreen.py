@@ -90,6 +90,7 @@ except ImportError:
 
 # Video codec lines
 vcodecs = {}
+vcodecs["huffyuv"] = ["-vcodec", "huffyuv"]
 
 # Audio codec lines
 acodecs = {}
@@ -98,7 +99,6 @@ acodecs["pcm"] = ["-acodec", "pcm_s16le"]
 
 if OS_VERSION[0] == 'Ubuntu' and (OS_VERSION[1] == '12.04' or OS_VERSION[1] == '11.10'):
   vcodecs["mpeg4"] = ["-vcodec", "mpeg4", "-qmax", "1", "-qmin", "1"]
-  vcodecs["huffyuv"] = ["-vcodec", "huffyuv"]
   vcodecs["vp8"] = ["-vcodec", "libvpx", "-qmax", "2", "-qmin", "1"]
   vcodecs["theora"] = ["-vcodec", "libtheora", "-b", "40000kb"]
   #vcodecs["xvid"] = ["-vcodec", "libxvid", "-b", "40000kb"]
@@ -118,7 +118,6 @@ else:
   vcodecs["h264"] = ["-vcodec", "libx264", "-vprofile", "baseline", "-preset", "ultrafast", "-g", "15", "-crf", "1", "-pix_fmt", "yuv420p"]
   vcodecs["h264_fast"] = ["-vcodec", "libx264", "-preset", "ultrafast", "-g", "15", "-crf", "0", "-pix_fmt", "yuv444p"]
   vcodecs["mpeg4"] = ["-vcodec", "mpeg4", "-g", "15", "-qmax", "1", "-qmin", "1"]
-  vcodecs["huffyuv"] = ["-vcodec", "huffyuv"]
   vcodecs["vp8"] = ["-vcodec", "libvpx", "-g", "15", "-qmax", "1", "-qmin", "1"]
   vcodecs["theora"] = ["-vcodec", "libtheora", "-g", "15", "-b:v", "40000k"]
   #vcodecs["xvid"] = ["-vcodec", "libxvid", "-g", "15", "-b:v", "40000k"]
