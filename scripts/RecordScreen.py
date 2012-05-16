@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
-# Discussion about this script at:
+# This version automatically adjusts settings for Ubuntu 11.10 and 12.04 to avoid having
+# different versions of the script. Inspired by code and comments found at
 # http://www.davidrevoy.com/article65/recordscreen-py-video-and-audio-capture-for-linux-with-ffmpeg
-# Updated for Ubuntu 12.04
+# Changes by Abe Pazos on May 16th, 2012 at 1:15pm.
 
-""" A simple screen-capture utility.  Utilizes ffmpeg with h264 support.
+""" A simple screen-capture utility.  Utilizes ffmpeg or avconv with h264 support.
 By default it captures the entire desktop.
 """
 
@@ -30,15 +31,6 @@ By default it captures the entire desktop.
 # THE SOFTWARE.
 ###############################################################################
 
-# Easy-to-change defaults for users
-DEFAULT_FPS = 15
-DEFAULT_FILE_EXTENSION = ".mkv"
-ACCEPTABLE_FILE_EXTENSIONS = [".avi", ".mp4", ".mov", ".mkv", ".ogv"]
-DEFAULT_CAPTURE_AUDIO_DEVICE = "pulse"
-DEFAULT_CAPTURE_DISPLAY_DEVICE = ":0.0"
-DEFAULT_AUDIO_CODEC = "vorbis"
-DEFAULT_VIDEO_CODEC = "h264_fast"
-
 import os
 import sys
 import os.path
@@ -49,9 +41,37 @@ import tempfile
 import optparse
 import subprocess
 import re
+import platform
 
 
 PYTHON_3 = (sys.version_info[0] == 3)
+
+
+try:
+  OS_VERSION = platform.linux_distribution()
+except:
+  OS_VERSION = (0, 0, 0)
+
+
+# Easy-to-change defaults for users
+DEFAULT_FPS = 15
+DEFAULT_CAPTURE_AUDIO_DEVICE = "pulse"
+DEFAULT_CAPTURE_DISPLAY_DEVICE = ":0.0"
+DEFAULT_FILE_EXTENSION = "mkv"
+DEFAULT_VIDEO_CODEC = "h264_fast"
+
+if OS_VERSION[0] == 'Ubuntu' and OS_VERSION[1] == '12.04':
+  ACCEPTABLE_FILE_EXTENSIONS = ["avi", "mp4", "mov", "mkv", "ogv"]
+  DEFAULT_AUDIO_CODEC = "vorbis"
+  APP = 'avconv'
+elif OS_VERSION[0] == 'Ubuntu' and OS_VERSION[1] == '11.10':
+  ACCEPTABLE_FILE_EXTENSIONS = ["avi", "mp4", "mov", "mkv", "ogv"]
+  DEFAULT_AUDIO_CODEC = "vorbis"
+  APP = 'ffmpeg'
+else:
+  ACCEPTABLE_FILE_EXTENSIONS = ["avi", "mp4", "mov", "mkv", "ogv", "webm"]
+  DEFAULT_AUDIO_CODEC = "pcm"
+  APP = 'ffmpeg'
 
 
 # Optional packages
@@ -71,28 +91,42 @@ except ImportError:
 # Video codec lines
 vcodecs = {}
 
-# These two were deactivated when ugrading to Ubuntu 12.04
-#vcodecs["h264"] = ["-vcodec", "libx264", "-vpre", "lossless_medium"]
-#vcodecs["h264_fast"] = ["-vcodec", "libx264", "-vpre", "lossless_ultrafast"]
-
-# The two previous codec settings were replaced by the next two
-vcodecs["h264"] = ["-vcodec", "libx264", "-preset", "medium", "-cqp", "0"]
-vcodecs["h264_fast"] = ["-vcodec", "libx264", "-preset", "ultrafast", "-cqp", "0"]
-
-vcodecs["mpeg4"] = ["-vcodec", "mpeg4", "-qmax", "1", "-qmin", "1"]
-#vcodecs["xvid"] = ["-vcodec", "libxvid", "-b", "40000kb"]
-vcodecs["huffyuv"] = ["-vcodec", "huffyuv"]
-vcodecs["vp8"] = ["-vcodec", "libvpx", "-qmax", "2", "-qmin", "1"]
-vcodecs["theora"] = ["-vcodec", "libtheora", "-b", "40000kb"]
-#vcodecs["dirac"] = ["-vcodec", "libschroedinger", "-b", "40000kb"]
-
 # Audio codec lines
 acodecs = {}
 acodecs["pcm"] = ["-acodec", "pcm_s16le"]
 #acodecs["flac"] = ["-acodec", "flac"]
-acodecs["vorbis"] = ["-acodec", "libvorbis", "-ab", "320k"]
-acodecs["mp3"] = ["-acodec", "libmp3lame", "-ab", "320k"]
-acodecs["aac"] = ["-acodec", "libfaac", "-ab", "320k"]
+
+if OS_VERSION[0] == 'Ubuntu' and (OS_VERSION[1] == '12.04' or OS_VERSION[1] == '11.10'):
+  vcodecs["mpeg4"] = ["-vcodec", "mpeg4", "-qmax", "1", "-qmin", "1"]
+  vcodecs["huffyuv"] = ["-vcodec", "huffyuv"]
+  vcodecs["vp8"] = ["-vcodec", "libvpx", "-qmax", "2", "-qmin", "1"]
+  vcodecs["theora"] = ["-vcodec", "libtheora", "-b", "40000kb"]
+  #vcodecs["xvid"] = ["-vcodec", "libxvid", "-b", "40000kb"]
+  #vcodecs["dirac"] = ["-vcodec", "libschroedinger", "-b", "40000kb"]
+  if OS_VERSION[1] == '12.04':
+    vcodecs["h264"] = ["-vcodec", "libx264", "-preset", "medium", "-cqp", "0"]
+    vcodecs["h264_fast"] = ["-vcodec", "libx264", "-preset", "ultrafast", "-g", "15", "-crf", "0", "-pix_fmt", "yuv444p"]
+  else:
+    vcodecs["h264"] = ["-vcodec", "libx264", "-vpre", "lossless_medium"]
+    vcodecs["h264_fast"] = ["-vcodec", "libx264", "-vpre", "lossless_ultrafast"]
+
+  acodecs["vorbis"] = ["-acodec", "libvorbis", "-ab", "320k"]
+  acodecs["mp3"] = ["-acodec", "libmp3lame", "-ab", "320k"]
+  acodecs["aac"] = ["-acodec", "libfaac", "-ab", "320k"]
+
+else:
+  vcodecs["h264"] = ["-vcodec", "libx264", "-vprofile", "baseline", "-preset", "ultrafast", "-g", "15", "-crf", "1", "-pix_fmt", "yuv420p"]
+  vcodecs["h264_fast"] = ["-vcodec", "libx264", "-preset", "ultrafast", "-g", "15", "-crf", "0", "-pix_fmt", "yuv444p"]
+  vcodecs["mpeg4"] = ["-vcodec", "mpeg4", "-g", "15", "-qmax", "1", "-qmin", "1"]
+  vcodecs["huffyuv"] = ["-vcodec", "huffyuv"]
+  vcodecs["vp8"] = ["-vcodec", "libvpx", "-g", "15", "-qmax", "1", "-qmin", "1"]
+  vcodecs["theora"] = ["-vcodec", "libtheora", "-g", "15", "-b:v", "40000k"]
+  #vcodecs["xvid"] = ["-vcodec", "libxvid", "-g", "15", "-b:v", "40000k"]
+  #vcodecs["dirac"] = ["-vcodec", "libschroedinger", "-g", "15", "-b:v", "40000k"]
+
+  acodecs["vorbis"] = ["-acodec", "libvorbis", "-b:a", "320k"]
+  acodecs["mp3"] = ["-acodec", "libmp3lame", "-b:a", "320k"]
+  acodecs["aac"] = ["-acodec", "libfaac", "-b:a", "320k"]
 
 
 def capture_line(fps, x, y, height, width, display_device, audio_device, video_codec, audio_codec, output_path):
@@ -103,7 +137,7 @@ def capture_line(fps, x, y, height, width, display_device, audio_device, video_c
     if have_multiproc:
         # Detect the number of threads we have available
         threads = multiprocessing.cpu_count()
-    line = ["ffmpeg",
+    line = [APP,
             "-f", "alsa",
             "-ac", "2",
             "-i", str(audio_device),
@@ -126,7 +160,7 @@ def video_capture_line(fps, x, y, height, width, display_device, video_codec, ou
         # Detect the number of threads we have available
         threads = multiprocessing.cpu_count()
 
-    line = ["ffmpeg",
+    line = [APP,
             "-f", "x11grab",
             "-r", str(fps),
             "-s", "%dx%d" % (int(height), int(width)),
@@ -140,7 +174,7 @@ def audio_capture_line(audio_device, audio_codec, output_path):
     """ Returns the command line to capture audio (no video), in a list form
         compatible with Popen.
     """
-    line = ["ffmpeg",
+    line = [APP,
             "-f", "alsa",
             "-ac", "2",
             "-i", str(audio_device)]
@@ -222,16 +256,16 @@ def get_default_output_path():
     """ Creates a default output file path.
         Pattern: out_####.ext
     """
-    filenames = glob.glob("out_????" + DEFAULT_FILE_EXTENSION)
+    filenames = glob.glob("out_????" + "." + DEFAULT_FILE_EXTENSION)
     for i in range(1, 9999):
-        name = "out_" + str(i).rjust(4,'0') + DEFAULT_FILE_EXTENSION
+        name = "out_" + str(i).rjust(4,'0') + "." + DEFAULT_FILE_EXTENSION
         tally = 0
         for f in filenames:
             if f == name:
                 tally += 1
         if tally == 0:
             return name
-    return "out_9999" + DEFAULT_FILE_EXTENSION
+    return "out_9999" + "." + DEFAULT_FILE_EXTENSION
 
 
 def print_codecs():
@@ -259,7 +293,7 @@ if __name__ == "__main__":
     out_path = get_default_output_path()
 
     # Parse command line arguments
-    parser = optparse.OptionParser(usage="%prog [options] [output_file" + DEFAULT_FILE_EXTENSION + "]")
+    parser = optparse.OptionParser(usage="%prog [options] [output_file" + "." + DEFAULT_FILE_EXTENSION + "]")
     parser.add_option("-w", "--capture-window", action="store_true", dest="capture_window",
                       default=False,
                       help="prompt user to click on a window to capture")
@@ -313,8 +347,10 @@ if __name__ == "__main__":
     # Output file path
     if len(args) >= 1:
         out_path = args[0]
-        if out_path[-4:] not in ACCEPTABLE_FILE_EXTENSIONS:
-            out_path += DEFAULT_FILE_EXTENSION
+        exts = out_path.rsplit(".", 1)
+
+        if len(exts) == 1 or exts[1] not in ACCEPTABLE_FILE_EXTENSIONS:
+            out_path += "." + DEFAULT_FILE_EXTENSION
 
     # Get desktop resolution
     try:
