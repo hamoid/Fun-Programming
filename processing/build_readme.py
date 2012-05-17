@@ -15,6 +15,6 @@ currDir = os.getcwd().split('/')[-1]
 f = open('readme.md', "w")
 for line in result:
   if line:
-    f.write('+ [%s](%s/%s)\n' % (os.path.basename(line), currDir, line))
+    f.write('[%s](%s/%s)  \n' % (os.path.basename(line), currDir, line))
 f.close()
 
