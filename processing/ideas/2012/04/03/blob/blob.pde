@@ -1,5 +1,5 @@
 // In this sketch I test curveVertex
-// Notice that three Vertices are drawn 3 times to make it a closed shape.
+// Notice that three Vertices are drawn twice to make it a closed shape.
  
 int Segments = 11;
  
