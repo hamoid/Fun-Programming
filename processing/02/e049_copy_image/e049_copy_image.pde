@@ -1,8 +1,10 @@
+/* @pjs preload="data/guitar_man.jpg"; */
+
 PImage photo;
 
 void setup() {
   size(300, 300);
-  photo = loadImage("guitar_man.jpg");
+  photo = loadImage("data/guitar_man.jpg");
   background(40);
   stroke(255);
 }

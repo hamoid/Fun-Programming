@@ -1,8 +1,10 @@
+/* @pjs preload="data/big.jpg"; */
+
 void setup() {
   size(500, 400);
   colorMode(HSB);
-  
-  PImage img = loadImage("big.png");
+
+  PImage img = loadImage("data/big.jpg");
   image(img, 0, 0);
 
   loadPixels();
@@ -10,14 +12,14 @@ void setup() {
     float b = brightness(pixels[i]);
     float s = saturation(pixels[i]);
     float h = hue(pixels[i]);
-    
+
     if(b > 100) {
       pixels[i] = color(255);
     } else {
       pixels[i] = color(0);
     }
   }
-  updatePixels();  
+  updatePixels();
 }
 void draw() {
 }

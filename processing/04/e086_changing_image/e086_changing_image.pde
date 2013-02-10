@@ -1,5 +1,7 @@
+/* @pjs preload="data/big.jpg"; */
 
-/* @pjs preload="big.png"; */
+// This program does not correctly work on processing.js.
+// Please run inside the Processing IDE using the Java mode.
 
 float d = 20;
 PImage back_image;
@@ -10,7 +12,7 @@ void setup() {
   noFill();
   stroke(255);
   smooth();
-  back_image = loadImage("big.png");
+  back_image = loadImage("data/big.jpg");
 }
 void draw() {
   background(back_image);
@@ -21,7 +23,9 @@ void draw() {
 }
 void mouseReleased() {
   loadPixels();
+  back_image.loadPixels();
   back_image.pixels = pixels;
+  back_image.updatePixels();
   d = 20;
 }
 

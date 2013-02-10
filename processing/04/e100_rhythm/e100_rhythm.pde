@@ -1,5 +1,8 @@
 import ddf.minim.*;
 
+// This program only runs on the Java mode on the IDE,
+// not on Processing.js (web mode).
+
 Minim soundengine;
 AudioSample s1;
 AudioSample s2;

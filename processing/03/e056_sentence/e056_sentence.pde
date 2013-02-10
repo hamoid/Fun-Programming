@@ -1,7 +1,6 @@
 void write_word(String[] words) {
   int n = int(random(words.length));
-  print(words[n]);
-  print(" ");
+  println(words[n]);
 }
 void setup() {
   background(255);
@@ -14,9 +13,9 @@ void setup() {
   };
   String[] nou = {
     "forest", "tree", "flower", "sky", "grass", "mountain"
-  }; 
+  };
   String[] adj = {
-    "happy", "rotating", "red", "fast", "elastic", "smily", "unbelievable", "infinte", 
+    "happy", "rotating", "red", "fast", "elastic", "smily", "unbelievable", "infinite",
     "intelligent", "shy"
   };
   String[] ver = {

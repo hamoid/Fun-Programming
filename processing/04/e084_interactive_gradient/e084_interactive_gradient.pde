@@ -1,3 +1,5 @@
+/* @pjs preload="data/screenshot.jpg"; */
+
 PImage back;
 
 void setup() {
@@ -6,8 +8,8 @@ void setup() {
   noFill();
   smooth();
   strokeWeight(2);
-  background(0);  
-  back = loadImage("screenshot.png");
+  background(0);
+  back = loadImage("data/screenshot.jpg");
   image(back, 0, 0);
 }
 void draw_circ_grad(int x, int y, int maxd) {
@@ -19,7 +21,7 @@ void draw_circ_grad(int x, int y, int maxd) {
     color newc = lerpColor(c1, c2, n);
     stroke(newc);
     ellipse(x, y, d, d);
-  }  
+  }
 }
 void draw() {
 }
