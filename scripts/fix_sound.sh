@@ -4,12 +4,14 @@
 
 # 1) open a terminal 
 #    CTRL+ALT+T
-# 2) cd into the folder that contains the processing. For instance:
-#    cd /home/YOURNAME/Desktop/YOURP5STUFF/
-# 3) run the script:
+# 2) cd into the folder that contains the processing folder. 
+#    If you have /home/MYUSER/Desktop/MYP5/processing-2.0b9/ then type:
+#    cd /home/MYUSER/Desktop/MYP5/
+# 3) run the script (it will ask for your password):
 #    ./fix_sound.sh processing-2.0b9
+# 4) Enjoy sound :)
 
-# Feel free to fix the paths to the required files
+# Feel free to fork, fix and improve :)
 
 # By Abe Pazos - http://funprogramming.org
 
