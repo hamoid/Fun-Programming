@@ -5,11 +5,15 @@
 # 1) open a terminal 
 #    CTRL+ALT+T
 # 2) cd into the folder that contains the processing folder. 
-#    If you have /home/MYUSER/Desktop/MYP5/processing-2.0b9/ then type:
+#    If you have /home/MYUSER/Desktop/MYP5/processing-2.0/ then type:
 #    cd /home/MYUSER/Desktop/MYP5/
-# 3) run the script (it will ask for your password):
-#    ./fix_sound.sh processing-2.0b9
-# 4) Enjoy sound :)
+# 3) Download this script:
+#    wget https://raw.github.com/hamoid/Fun-Programming/master/scripts/fix_sound.sh
+# 4) Make the script executable:
+#    chmod +x fix_sounds.sh
+# 5) run the script (it will ask for your password). The argument is the P5 folder name.
+#    ./fix_sound.sh processing-2.0
+# 6) Enjoy sound :)
 
 # Feel free to fork, fix and improve :)
 
