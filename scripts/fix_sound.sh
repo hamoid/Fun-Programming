@@ -17,6 +17,8 @@
 
 # Feel free to fork, fix and improve :)
 
+# Details about the issue: http://code.google.com/p/processing/issues/detail?id=930
+
 # By Abe Pazos - http://funprogramming.org
 
 set -e
