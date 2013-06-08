@@ -1,20 +1,19 @@
 /*
   This program studies what happens when you use noise() or random()
-  to define the hue component of a color.
-  
-  random() covers the whole spectrum and you get all kinds of hues.
-  
-  noise() does not cover the whole spectrum. Reds, oranges and yellows are missing.
-  
-  snoise(), a custom function, tries to improve this by stretching the noise()
-  values. But red is still missing.
-
-*/
+ to define the hue component of a color.
+ 
+ random() covers the whole spectrum and you get all kinds of hues.
+ 
+ noise() does not cover the whole spectrum. Reds, oranges and yellows are missing.
+ 
+ snoise(), a custom function, tries to improve this by stretching the noise()
+ values. But red is still missing.
+ 
+ */
 
 float[] n;
-Button b1;
-Button b2;
-Button b3;
+Button[] buttons;
+String[] butNames = { "noise()", "random()", "snoise()", "random()*random()", "anoise()" };
 boolean doWork = true;
 int modeID = 2;
 
@@ -23,9 +22,11 @@ void setup() {
   colorMode(HSB, 500);
   n = new float[width];
   reset();
-  b1 = new Button(0, "noise()", 20, 40);
-  b2 = new Button(1, "random()", 20, 60);
-  b3 = new Button(2, "snoise()", 20, 80);
+  buttons = new Button[butNames.length];
+  for (int i = 0; i<butNames.length; i++) {
+    buttons[i] = new Button(i, butNames[i], 20, 40+i*20);
+  }
+  //noiseDetail(4, 0.8);
 }
 void reset() {
   for (int i = 0; i<width; i++) {
@@ -44,23 +45,36 @@ float snoise(float x, float y, float z) {
   }
   return n;
 }
+float anoise(float x, float y, float z) {
+  float n = (10*noise(x, y, z))%1;
+  return n;
+}
 void calculate() {
   for (int j = 0; j<1000; j++) {
-    int r = 0;
+    float rnd = 0;
     switch(modeID) {
     case 0:
-      r = int(noise(frameCount/10.0, j/10.0) * width);
+      rnd = noise(frameCount/10.0, j/10.0);
       break;
     case 1:
-      r = int(random(0, width));
+      rnd = random(1);
       break;
     case 2:
-      r = int(snoise(frameCount/10.0, j/10.0, 0) * width);
+      rnd = snoise(frameCount/10.0, j/10.0, 0);
+      break;
+    case 3:
+      rnd = random(1) * random(1);
+      break;
+    case 4:
+      rnd = anoise(frameCount/10.0, j/10.0, 0);
       break;
     }
-    n[r] += 0.6;
-    if (n[r] > height) {
-      doWork = false;
+    if (rnd < 1) {
+      int r = int(rnd*width);
+      n[r] += 0.6;
+      if (n[r] > height) {
+        doWork = false;
+      }
     }
   }
 }
@@ -74,9 +88,9 @@ void draw() {
     line(i, height, i, height-n[i]);
     stroke(0);
   }
-  b1.draw();
-  b2.draw();
-  b3.draw();
+  for (int i = 0; i<butNames.length; i++) {
+    buttons[i].draw();
+  }
 }
 class Button {
   int id;
