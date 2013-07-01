@@ -25,12 +25,21 @@ set -e
 
 echo
 
+uname -m|grep -q 64
+if [ $? -eq 0 ] 
+then
+        P2="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/"
+        P3="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/"
+        F2="amd64/libpulse-java.so"
+else
+        P2="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/"
+        P3="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/"
+        F2="i386/libpulse-java.so"
+fi
+
 P1="/usr/lib/jvm/java-6-openjdk-common/jre/lib/"
-P2="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/"
-P3="/usr/lib/jvm/java-6-openjdk-i386/jre/lib/"
 
 F1="ext/pulse-java.jar"
-F2="i386/libpulse-java.so"
 F3="sound.properties"
 
 if [ ! -f $P1$F1 ]
