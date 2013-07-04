@@ -42,19 +42,17 @@ void saveToWeb(String filename, byte[] data) {
 }
 
 void saveToWeb(String filename, PImage img) {
-  // Trick to do image encoding and get the encoded bytes.
-  // There must be a more efficient way to transform
-  // a PImage into a jpeg without saving to disk...
-  PGraphics pg = createGraphics(img.width, img.height);
-  pg.image(img, 0, 0);
+  // Trick to encode as JPG or PNG.
+  // There must be a more efficient way to encode
+  // a PImage into an image without saving to disk...
   
   if(filename.toLowerCase().endsWith(".jpg") || filename.toLowerCase().endsWith(".jpeg")) {
-    pg.save("_tmp_file_to_upload.jpg");
+    save("_tmp_file_to_upload.jpg");
     byte[] data = loadBytes("_tmp_file_to_upload.jpg");
     postData(filename, "image/jpeg", data);
   }
   if(filename.toLowerCase().endsWith(".png")) {
-    pg.save("_tmp_file_to_upload.png");
+    save("_tmp_file_to_upload.png");
     byte[] data = loadBytes("_tmp_file_to_upload.png");
     postData(filename, "image/png", data);
   }
