@@ -1,3 +1,5 @@
+// Note: this program runs only in the Processing IDE, not in the browser
+
 import ddf.minim.*;
 
 Minim minim;
@@ -13,7 +15,7 @@ void setup() {
   fill(255, 0, 0);
   noStroke();
   smooth();
-  
+
   minim = new Minim(this);
   water = minim.loadSample("water.wav", 2048);
 }
@@ -22,7 +24,7 @@ void draw() {
   ellipse(x, y, 50, 50);
   x += dx;
   y += dy;
-  
+
   if(x > width) {
     x = width;
     dx = -dx;
@@ -46,6 +48,6 @@ void draw() {
 }
 void stop() {
   water.close();
-  minim.stop();  
+  minim.stop();
   super.stop();
 }

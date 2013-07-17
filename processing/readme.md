@@ -122,6 +122,7 @@
 [e126_abstract_movie_player.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/06/e126_abstract_movie_player/e126_abstract_movie_player.pde)  
 [e127_fun_with_filters.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/06/e127_fun_with_filters/e127_fun_with_filters.pde)  
 [e128_filter_animated_blobs.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/06/e128_filter_animated_blobs/e128_filter_animated_blobs.pde)  
+[e133_SinOsc_demo.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/06/e133_SinOsc_demo/e133_SinOsc_demo.pde)  
 [uhmans.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/ideas/2006/04/22/uhmans/uhmans.pde)  
 [time_jitterlips.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/ideas/2011/08/15/time_jitterlips/time_jitterlips.pde)  
 [sine_mountains.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/ideas/2011/09/21/sine_mountains/sine_mountains.pde)  
@@ -164,3 +165,4 @@
 [constellations.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/ideas/2012/04/05/constellations/constellations.pde)  
 [spline.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/ideas/2012/04/05/spline/spline.pde)  
 [bezier_anim_easing.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/ideas/2012/04/07/bezier_anim_easing/bezier_anim_easing.pde)  
+[uploadImage.pde](https://github.com/hamoid/Fun-Programming/blob/master/processing/ideas/2013/07/uploadImage/uploadImage.pde)  
