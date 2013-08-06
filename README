@@ -1,9 +1,7 @@
 Fun Programming - http://funprogramming.org
 
-Programs written during each episode of the Fun Programming video series. 
+Programs written for the Fun Programming video series + random creative coding experiments (mostly found in the processing/ideas/ folder).
 
-To download all the programs press the [ZIP] button above.
+To download all the programs press the [Download ZIP] button on the right.
 
-Episodes 1 to 100 use the Processing programming language (http://www.processing.org)
-
-The folder processing/ideas/ contains experiments and ideas for future episodes.
+Most programs found here are written using Processing (http://www.processing.org/) and SuperCollider (http://supercollider.sourceforge.net/), great programming languages for creating animated graphics and sound.
