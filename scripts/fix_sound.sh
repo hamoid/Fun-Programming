@@ -1,3 +1,4 @@
+#!/bin/bash
 # Bash script to fix sound in Processing for Ubuntu
 
 # Tested only in Ubuntu 12.04!
@@ -20,8 +21,6 @@
 # Details about the issue: http://code.google.com/p/processing/issues/detail?id=930
 
 # By Abe Pazos - http://funprogramming.org
-
-set -e
 
 echo
 
@@ -60,14 +59,16 @@ then
     exit 1
 fi
 
-if [ ! -d $1 ]
+if [ $# -ne 1 ]
 then
     echo "Please use: fix_sound.sh [PATH_THAT_CONTAINS_PROCESSING_FOLDER]"
-    echo "For instance: fix_sound.sh ./processing-2.0b9"
+    echo "For instance: fix_sound.sh ./processing-2.0.2"
     exit 1
 fi
 
 echo "All files found. Good :)"
+
+set -e
 
 TARGET="$1/java/lib/"
 
