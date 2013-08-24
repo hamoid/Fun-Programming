@@ -97,7 +97,7 @@
 //int[]i=new int[4];int a,c;void setup(){size(900,900);}void draw(){stroke(a<<c);line(i[0],i[1],i[2],i[3]);i[a%4]=c=(a+i[++a%4]&a)%900;}//#p5
 
 //int id=24; String name="38 seconds";
-//int s=900,i,w=s*s;void setup(){size(s,s);}void draw(){loadPixels();while(++i%w>0){pixels[i%w]=i%(s+i/s)-1<<(i/(w*90));}updatePixels();}//#P5
+//int s=900,i,w=s*s;void setup(){size(s,s);}void draw(){loadPixels();while(++i%w>0){pixels[i%w]=i%(s+i/s)-1<<(i/(w*90));}updatePixels();}//#p5
 
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
