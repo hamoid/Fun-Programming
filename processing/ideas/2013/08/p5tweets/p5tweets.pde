@@ -1,30 +1,52 @@
 /*
-  Processing Tweets by Abe Pazos - 2013
-  http://funprogramming.org/p5tweets
+  p5tweets by Abe Pazos - 2013
 
   What is this?
-    An experiment to find out how much can be done 
-    with programs that fit in a tweet.
+    An experiment to find out how much can be done
+    with programs that fit in a tweet (140 characters)
 
-  Instructions: 
-    To run a p5tweet, uncomment a pair of lines and run.
+  How do they look like?
+    Here you can see still images, but note that you
+    will miss the animation:
+    http://funprogramming.org/p5tweets
 
-    The first line in the pair contains a name and an id.
-    This is not part of the tweet. I use the id to save 
-    an image when I press a key to easily share images 
-    with others.
+  Why do this?
+    Because it's fun, addictive, difficult, and you often must
+    break all rules of "good programming". Therefore, please
+    don't learn programming from these tweets :)
+
+  How to run them:
+    1) Install Processing
+    2) Download https://raw.github.com/hamoid/Fun-Programming/master/processing/ideas/2013/08/p5tweets/p5tweets.pde
+    3) Open the downloaded file in Processing
+    4) Uncomment a pair of lines
+    5) Click run
+
+    The first line in each pair of lines contains a name and an id.
+    This is not part of the tweet. I use the id to save an image
+    when I press the 's' key to easily share images with others.
 
     The second line in the pair is the tweet.
 
-  Find more p5tweets:
+  Why are they commented out?
+    Because I wanted to have them all in one file. If they were
+    not commented out Processing would get confused with so many
+    "void draw" found in this file.
+
+  Find more p5tweets made by others:
     https://twitter.com/search?q=void%20OR%20size%20%23p5&src=savs&mode=realtime
 
-  p5tweets Processing tool:
+  p5tweets Processing tool for easy download of tweets:
     https://forum.processing.org/topic/tweet-a-sketch#25080000002431089
 
-  Ruler:
-    At the end of the file there is a ruler you can use to make sure
+  Make your own:
+    At the end of the pde file there is a ruler you can use to make sure
     you don't go past the 140 characters limit :)
+
+  Kudos
+  To the ones who did this before (and still are doing it) with both SuperCollider
+  and Processing.
+
 */
 
 //int id=1; String name="random(1)*random(1)*random(1)";
@@ -101,6 +123,10 @@
 
 //int id=25; String name="Extended alphabet";
 //int i;void setup(){size(900,900);noStroke();}void draw(){while(++i%4>0){fill(-1<<(i%2<<4));rect(3+i%13*90,3+i%11*90,i*i%85,i*i%86);}}//#p5
+
+//int id=26; String name="Fly like a fly";
+//float i;void setup(){size(900,900,P3D);}void draw(){translate(450,450);rotateY(i+=.017);rotateZ(i*.13);rect(200,200*sin(i*.87),90,90);}//#p5
+
 
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
