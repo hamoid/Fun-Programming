@@ -127,6 +127,9 @@
 //int id=26; String name="Fly like a fly";
 //float i;void setup(){size(900,900,P3D);}void draw(){translate(450,450);rotateY(i+=.017);rotateZ(i*.13);rect(200,200*sin(i*.87),90,90);}//#p5
 
+//int id=27; String name="Binary noise"; 
+//int i,s=400,k=s*s;void setup(){size(s,s);}void draw(){while(++i%k>0)set(i%s,i/s%s,-i<<int(61*noise((i%s)/3e2,i*1e-8)));}//#p5 
+
 
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
