@@ -130,8 +130,11 @@
 //int id=27; String name="Binary noise"; 
 //int i,s=400,k=s*s;void setup(){size(s,s);}void draw(){while(++i%k>0)set(i%s,i/s%s,-i<<int(61*noise((i%s)/3e2,i*1e-8)));}//#p5 
 
-int id=28; String name="Confronted with delay";
-int i,n,s=900;void setup(){size(s,s);colorMode(3);}void draw(){fill(i%255,i%253,i%251,99);rotate(i);rect(i%s,n=(++i*7)%s,2e5/i,2e5/i);}//#p5
+//int id=28; String name="Confronted with delay";
+//int i,n,s=900;void setup(){size(s,s);colorMode(3);}void draw(){fill(i%255,i%253,i%251,99);rotate(i);rect(i%s,n=(++i*7)%s,2e5/i,2e5/i);}//#p5
+
+//int id=29; String name="Day and night of shuttered glass";
+//int i;void setup(){size(900,900,P3D);noFill();}void draw(){stroke(i%2*sin(i/9e2)*127+127);rotateX(++i/8e2);rotateZ(i/1e3);sphere(1e3);}//#p5
 
 
 // Ruler. 140 characters long. I develop new tweets under it.
