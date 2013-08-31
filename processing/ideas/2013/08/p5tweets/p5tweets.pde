@@ -136,12 +136,15 @@
 //int id=29; String name="Day and night of shuttered glass";
 //int i;void setup(){size(900,900,P3D);noFill();}void draw(){stroke(i%2*sin(i/9e2)*127+127);rotateX(++i/8e2);rotateZ(i/1e3);sphere(1e3);}//#p5
 
+//int id=30; String name="?";
+//int n=900,s,a=n/2;void setup(){size(n,n);}void draw(){translate(a,a);rotate(++s/9e1);stroke(-(s*s)<<(s^-s));line(-n,s%n-a,n,s%n-a);}//#p5
+
 
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
-
 // new tweet goes here...
+
 
 void keyPressed() {
   if(key=='s')
