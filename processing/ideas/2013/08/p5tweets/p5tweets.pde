@@ -142,12 +142,14 @@
 //int id=31; String name="Eightyfour";
 //int n=900,s,a=n/2;void setup(){size(n,n,P3D);textSize(a);}void draw(){translate(a,a);rotateX(++s/8e1);fill(-s*n);text(84,s/7-a,s%n-a);}//#p5
 
+//int id=32; String name="Surveillance";
+//int i,w=900;void setup(){size(w,w);}void draw(){fill(0,4);stroke(255,87);bezier(++i%w,w-(i%w),i/.23%w,i*7%w,i/.17%w,i/.3%w,i*6%w,w/2);}//#p5
+
 
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
 // new tweet goes here...
-
 
 void keyPressed() {
   if(key=='s')
