@@ -9,9 +9,9 @@ You can install it by opening the Processing IDE, then go to
 Sketch > Import Library > Add Library > OscP5 > Install
 
 The goal is to have each of us write a program that listens to the mice
-and keyboards of all other participants in the room. One by one we will
+and keyboards of all other participants in the room. By turns we will
 connect our laptops to the proyector, our processing program will 
-listen to the input coming from all other computers and our program will
+listen to the input coming from all other computers, and our program will
 do something with that input. We could build a collaborative drawing program,
 a chat program, a multiplayer game, or something else.
 
@@ -19,16 +19,16 @@ To help with the development, I will provide here examples that provide the
 OSC communication that connects different Processing sketches running in
 different computers.
 
-You can download the sample source from
-https://github.com/hamoid/balconylab/
-or as a zip file from:
+You can download the sample source in zip format from:
 https://github.com/hamoid/balconylab/archive/master.zip
+
+(If you prefer git access: https://github.com/hamoid/balconylab/)
 
 There you will find several programs:
 
 twoMice
 
-    The initial test that inspired today's concep. Ramin and I wrote this program.
+    The initial test that inspired today's concept. Ramin and I wrote this program.
     It's a drawing program for two. You run it in two laptops, and both laptops
     show the drawing being made by both users.
 
