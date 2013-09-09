@@ -145,6 +145,8 @@
 //int id=32; String name="Surveillance";
 //int i,w=900;void setup(){size(w,w);}void draw(){fill(0,4);stroke(255,87);bezier(++i%w,w-(i%w),i/.23%w,i*7%w,i/.17%w,i/.3%w,i*6%w,w/2);}//#p5
 
+//int id=33; String name="Stuck in a loop";
+//int i,w=900;void setup(){size(w,w,P3D);}void draw(){pointLight(w,w,w,w,0,2*w);camera(80,50,i%199,++i%96-50,i%93-50,0,0,1,0);box(i&69);}//#p5
 
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
