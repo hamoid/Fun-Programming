@@ -148,10 +148,14 @@
 //int id=33; String name="Stuck in a loop";
 //int i,w=900;void setup(){size(w,w,P3D);}void draw(){pointLight(w,w,w,w,0,2*w);camera(80,50,i%199,++i%96-50,i%93-50,0,0,1,0);box(i&69);}//#p5
 
+//int id=34; String name="Glitch me";
+//int s=900,i,w=s*s;void setup(){size(s,s);}void draw(){loadPixels();while(++i%w>0){pixels[abs((i*7&i/s)%w)]=-(i/73)<<3;}updatePixels();}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
 // new tweet goes here...
+
 
 void keyPressed() {
   if(key=='s')
