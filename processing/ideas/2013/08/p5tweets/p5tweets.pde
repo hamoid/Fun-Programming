@@ -151,6 +151,9 @@
 //int id=34; String name="Glitch me";
 //int s=900,i,w=s*s;void setup(){size(s,s);}void draw(){loadPixels();while(++i%w>0){pixels[abs((i*7&i/s)%w)]=-(i/73)<<3;}updatePixels();}//#p5
 
+//int id=35; String name="MYWC";
+//int i,s=450;void setup(){size(s*2,s*2,P3D);}void draw(){translate(s,s);rotate(--i*.1,i%9,i%7,i%4);fill((-7<<i%36)-1);rect(s,0,30,30);}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
