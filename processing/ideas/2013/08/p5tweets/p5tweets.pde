@@ -157,6 +157,9 @@
 //int id=36; String name="Ministry of encryption"; String ext="png";
 //int i,s=1024,r;void setup(){size(s,s);noStroke();}void draw(){r=8<<++i%6;fill(-(r<<(i/s))+(i%24)*r,270-r);rect(i/9*8%s,8*i*i*i%s,r,r);}//#p5
 
+//int id=37; String name="Sea of int"; String ext="jpg";
+//int i,n,s=900;void setup(){size(s,s);}void draw(){n=int(90+90*sin((i+=5)*.01));textSize(n);fill(233<<n);text(i/s,i%s-50,99*(i/s)%s-n);}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
