@@ -24,6 +24,9 @@ void movieEvent(Movie m) {
 }
 
 void draw() {
+  // Before accessing the pixels array always use loadPixels!
+  mov.loadPixels();
+  
   // For each frame we draw a collection of dots
   // beginning at the center of the screen.
 
