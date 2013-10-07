@@ -1,7 +1,7 @@
 #!/bin/bash
 # Bash script to fix sound in Processing for Ubuntu
 
-# Tested only in Ubuntu 12.04!
+# Tested only in Ubuntu 12.04 and 13.04!
 
 # 1) open a terminal 
 #    CTRL+ALT+T
