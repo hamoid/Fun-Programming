@@ -160,10 +160,18 @@
 //int id=37; String name="Sea of int"; String ext="jpg";
 //int i,n,s=900;void setup(){size(s,s);}void draw(){n=int(90+90*sin((i+=5)*.01));textSize(n);fill(233<<n);text(i/s,i%s-50,99*(i/s)%s-n);}//#p5
 
+//int id=38; String name="Question"; String ext="png"; // NOTE: comment out the keyPressed for this one
+//import javax.swing.JOptionPane;String r=JOptionPane.showInputDialog(null,"What?","Hmm..",JOptionPane.QUESTION_MESSAGE);text(r,9,9);//#p5
+
+//int id=39; String name="Self mirror"; String ext="png"; void draw(){}
+//void setup(){size(900,900);a(9);}void a(int n){if(n>0){fill(-n<<n);blendMode(4);ellipse(450,random(900),4<<n,4<<n);a(--n);a(n);}}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
+
 // new tweet goes here...
+
 
 void keyPressed() {
   if(key=='s')
