@@ -33,7 +33,7 @@ String oscPatternLetter = "/letter";
 ColorPair colors;
 TextReader text;
 
-// false until a key is pressed
+// true until a key is pressed
 boolean waitForClients = true;
 // can be used to test with no clients connected
 boolean testWithNoClients = true;
