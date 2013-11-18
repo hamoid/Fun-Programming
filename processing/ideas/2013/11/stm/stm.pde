@@ -59,7 +59,7 @@ void do_render(int mode) {
   rendered = false;
 }
 void saveImage() {
-  saveFrame("data/" + data.fileName + "_" + vizMode + ".jpg");
+  saveFrame("data/" + data.fileName + "_" + vizMode + ".tif");
   saveRequested = false;
 }
 void callFunctionByName(String f) {

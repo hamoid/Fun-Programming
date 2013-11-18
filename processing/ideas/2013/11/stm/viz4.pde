@@ -5,9 +5,12 @@ void viz4() {
   drawGradient(#16282E, #000000);
   drawStars();
 
-  pointLight(0, 0, 255, -3, 4, -3);
-  pointLight(40, 33, 94, 6, 3, -3);
-
+  noLights();
+  ambientLight(0, 0, 40);
+  lightFalloff(0.8, 0.0007, 0.0);
+  pointLight(0, 0, 160, -width*0.8, -height*0.9, height*0.3);
+  pointLight(20, 63, 250, width*0.8, height*0.9, height*0.3);
+  
   camera(
   width*0.5, height*0.36, height*0.28, 
   width*0.5, height*0.25, 0, 
@@ -16,7 +19,7 @@ void viz4() {
   pushMatrix();
   translate(width/2, height/4);
   rotateX(1);
-  scale(400);
+  scale(350);
 
   for (int dy=0; dy<data.h; dy++) { //data.h
     for (int dx=0; dx<data.w; dx++) {
