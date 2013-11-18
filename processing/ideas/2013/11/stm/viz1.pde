@@ -1,8 +1,7 @@
-void viz1() {
-  pushStyle();
-  camera();
-  lights();
-  
+/*
+  1. Top view
+*/
+void viz1() {  
   strokeWeight(2);
   for (int dy=0; dy<data.D[0].length; dy++) {
     for (int dx=0; dx<data.D.length; dx++) {
@@ -12,6 +11,5 @@ void viz1() {
     }
   }
   
-  popStyle();
   rendered = true;
 }
