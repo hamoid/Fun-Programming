@@ -1,0 +1,15 @@
+The idea behind this experiment is to make text hard to OCR (Optical Character Recognition).
+
+Why? I don't like not knowing who is reading the texts I send by e-mail or post in social networks. Texts can be analyzed and categorized using statistical analysis. So I thought of sending handwritten texts as an image. That might look beautiful and personal, but it takes more time than typing. So I wrote this quick experiment, in which a text is converted to an image, trying to make the text unreadable for machines.
+
+Of course I could use encryption, steganography and other techniques. But those involve a change of behavior for the recipient: they too must use tools to read the e-mails I send.
+
+This approach just tries to make text hard to read for machines while allowing people to read it, to avoid automatic analysis. If someone wants to spy and read the message, they can. But the amount of spies is limited (I hope).
+
+I've read that Captcha has been cracked, so maybe this attempt is futile. Well, at least it may make someone aware of the issue.
+
+In the next version I will avoid writing in straight horizontal lines, but use curved ones instead.
+
+Feel free to play and modify it.
+
+a
