@@ -19,14 +19,15 @@
 */
 
 // size for the text
-int minSz = 25;
-int maxSz = 32;
+int minSz = 20;
+int maxSz = 30;
 
 // empty space around the image
 int margin = 30;
+float marginRand = 0.25;
 
 // condensing space between lines
-float vDist = 1.12;
+float vDist = 1.5;
 // condensing space between characters
 float hDist = 0.71;
 
@@ -39,17 +40,22 @@ float noiseAmount = 100;
 float noiseSpeed = 0.005;
 
 // how often we get horizontally flipped letters
-float flippedFrq = 0.03;
+float flippedFrq = 0.02;
 
 // amount of rotation
 float rotAmount = 0.08;
 
+String filePath = "text.txt";
 String lines[];
 
 void setup() {
-  size(875, 875);
+  size(900, 900);
   colorMode(HSB);
   textAlign(CENTER, CENTER);
+  
+  println("Click to generate a new image");
+  println("Press the space bar to load a text file");  
+  
   shake();
 }
 
@@ -59,15 +65,27 @@ void draw() {
 void mousePressed() {
   shake();
 }
+void keyPressed() {
+  if(key == ' ') {
+    selectInput("Select a small text file", "fileSelected"); 
+  }
+}
+void fileSelected(File selection) {
+  if (selection != null) {
+    filePath = selection.getAbsolutePath();
+    shake();
+  }
+}
+
 
 void shake() {
-  fill(random(255), 20, 160);
-  background(255);
-  lines = loadStrings("text.txt");
+  fill(255);
+  background(random(255), 80, 100);
+  lines = loadStrings(filePath);
 
-  float x = random(margin, width * 0.3);
+  float x = random(margin, width * marginRand);
   float y = 0;  
-  float lineWidth = random(width * 0.7, width - margin);
+  float lineWidth = random(width * (1-marginRand), width - margin);
 
   for (int i = 0 ; i < lines.length; i++) {
     int c = 0;
@@ -100,13 +118,17 @@ void shake() {
       x += textWidth(thechar) * hDist * (thechar == 32 ? 2 : 1);
 
       if (x > lineWidth) {
-        x = random(margin, width * 0.3);
+        x = random(margin, width * marginRand);
         y += minSz * vDist;
-        lineWidth = random(width * 0.7, width - margin);
+        lineWidth = random(width * (1-marginRand), width - margin);
       }
     }
-    x = random(margin, width * 0.3);
+    x = random(margin, width * marginRand);
     y += minSz * vDist;
+    
+    if(y > height) {
+      break; 
+    }
   }
 
   save("text.png");
