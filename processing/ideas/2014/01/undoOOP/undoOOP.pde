@@ -41,21 +41,21 @@ class Undo {
       images[i] = get();
     }
   }
-  void next() {
+  private void next() {
     // increase the pointer of a circular array
     currImageId = (currImageId + 1) % levelsOfUndo;
   }
-  void prev() {
+  private void prev() {
     // decrease the pointer of a circular array
     currImageId = (currImageId - 1 + levelsOfUndo) % levelsOfUndo;
   }
   // save a copy of the display
-  void save() {
+  public void save() {
     next();
     images[currImageId] = get();
   }
   // bring an old image back
-  void load() {
+  public void load() {
     prev();
     image(images[currImageId], 0, 0);
   }
