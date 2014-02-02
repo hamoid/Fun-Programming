@@ -1,5 +1,9 @@
-// Minimal drawing program with undo (OOP version)
-// Press 'z' to undo
+// Drawing program with undo/redo (OOP version)
+// Press CTRL+Z to undo, CTRL+SHIFT+Z to redo
+
+// We need these to know if CTRL/SHIFT are pressed
+boolean controlDown = false;
+boolean shiftDown = false;
 
 Undo undo;
 
@@ -9,55 +13,46 @@ void setup() {
   undo = new Undo(10);
 }
 void draw() {
-  if (mousePressed) {
+  // Our two line drawing program
+  if (mousePressed)
     line(mouseX, mouseY, pmouseX, pmouseY);
-  }
 }
 void mouseReleased() {
-  undo.save();
+  // Save each line we draw to our stack of UNDOs
+  undo.takeSnapshot();
 }
+
 void keyPressed() {
-  if (key=='z') {
-    undo.load();
-  }
+  // Remember if CTRL or SHIFT are pressed or not
+  if (key == CODED) {
+    if (keyCode == CONTROL) 
+      controlDown = true;
+    if (keyCode == SHIFT)
+      shiftDown = true;
+    return;
+  } 
+  // Check if we pressed CTRL+Z or CTRL+SHIFT+Z
+  if (controlDown) {
+    if (keyCode == 'Z') {
+      if (shiftDown)
+        undo.redo();
+      else
+        undo.undo();
+    }
+    return;
+  } 
+  // Check if we pressed the S key
   if (key=='s') {
     saveFrame("image####.png");
   }
 }
-
-class Undo {
-  int levelsOfUndo;
-  int currImageId = 0;
-  // circular array of images where to store undo levels
-  PImage[] images;
-  Undo(int levels) {
-    levelsOfUndo = levels;
-    images = new PImage[levelsOfUndo];
-
-    // Initialize all undo levels
-    for (int i=0; i<levelsOfUndo; i++) {
-      images[i] = createImage(width, height, RGB);
-      // undo levels are initialized as copies of the blank screen
-      images[i] = get();
-    }
-  }
-  private void next() {
-    // increase the pointer of a circular array
-    currImageId = (currImageId + 1) % levelsOfUndo;
-  }
-  private void prev() {
-    // decrease the pointer of a circular array
-    currImageId = (currImageId - 1 + levelsOfUndo) % levelsOfUndo;
-  }
-  // save a copy of the display
-  public void save() {
-    next();
-    images[currImageId] = get();
-  }
-  // bring an old image back
-  public void load() {
-    prev();
-    image(images[currImageId], 0, 0);
+void keyReleased() {
+  // Remember if CTRL or SHIFT are pressed or not
+  if (key == CODED) {
+    if (keyCode == CONTROL) 
+      controlDown = false;
+    if (keyCode == SHIFT)
+      shiftDown = false;
   }
 }
 
