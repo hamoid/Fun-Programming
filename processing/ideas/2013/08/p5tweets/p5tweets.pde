@@ -169,6 +169,9 @@
 //int id=40; String name="Cloudless computing"; String ext="png";
 //int s=900,i;void setup(){size(s,s,P3D);}void draw(){lights();fill(-i*s);translate(i%s,500);sphere(s/3);copy(0,i*i++%s,s,9,0,i*i*i%s,s,9);}//
 
+//int id=41; String name="Only a game"; String ext="png";
+//int s=900,i;void setup(){size(s,s,P3D);noStroke();}void draw(){lights();fill(-(i%3)*s<<17);translate(++i*i%s,i*i*i%s);sphere(s*s/i/5);}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
