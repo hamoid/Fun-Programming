@@ -166,6 +166,9 @@
 //int id=39; String name="Self mirror"; String ext="png"; void draw(){}
 //void setup(){size(900,900);a(9);}void a(int n){if(n>0){fill(-n<<n);blendMode(4);ellipse(450,random(900),4<<n,4<<n);a(--n);a(n);}}//#p5
 
+//int id=40; String name="Cloudless computing"; String ext="png";
+//int s=900,i;void setup(){size(s,s,P3D);}void draw(){lights();fill(-i*s);translate(i%s,500);sphere(s/3);copy(0,i*i++%s,s,9,0,i*i*i%s,s,9);}//
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
