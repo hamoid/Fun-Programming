@@ -175,8 +175,8 @@
 //int id=42; String name="Answer to the ultimate Q of L, the U, and E"; String ext="jpg";
 //int s=900,i;void setup(){size(s,s,P3D);noStroke();}void draw(){lights();fill(-i*i<<9);translate(s*noise(++i*.02),s-i*19%s);sphere(i%45);}//
 
-int id=43; String name=""; String ext="png";
-float i;void setup(){size(900,900,P3D);}void draw(){translate(450+450*cos(i*.9),600+400*sin(i+=.01)*noise(i));sphere(30/noise(i));}//#p5
+//int id=43; String name="Rainbow after a hard day of work"; String ext="png";
+//float i;void setup(){size(900,900,P3D);}void draw(){translate(450+450*cos(i*.9),600+400*sin(i+=.01)*noise(i));sphere(30/noise(i));}//#p5
 
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
