@@ -1,0 +1,3 @@
+for(int i=0; i<bla.length; i++) {
+  bla[i] = new Bla();
+}

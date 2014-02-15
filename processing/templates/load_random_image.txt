@@ -1,0 +1,8 @@
+// PImage img = loadImage(getRandomFileFrom("/home/funpro/Pictures - Nexus One/Instagram"));
+String getRandomFileFrom(String path) {
+  File container = new File(path);
+  File[] fnames = container.listFiles();
+  String name = fnames[int(random(fnames.length))].getAbsolutePath();
+  println(name);
+  return name;
+}

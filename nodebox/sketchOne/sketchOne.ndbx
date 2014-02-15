@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ndbx formatVersion="18" type="file" uuid="e854c9c0-9730-4830-8607-cd397a57d43e">
+    <property name="canvasHeight" value="500"/>
+    <property name="canvasWidth" value="500"/>
+    <property name="canvasX" value="0"/>
+    <property name="canvasY" value="0"/>
+    <node name="root" prototype="core.network" renderedChild="combine1">
+        <node name="add1" position="0.00,2.00" prototype="math.add"/>
+        <node name="add2" position="5.00,2.00" prototype="math.add">
+            <port name="value1" type="float" value="5.0"/>
+        </node>
+        <node name="colorize1" position="5.00,9.00" prototype="corevector.colorize"/>
+        <node name="colorize2" position="0.00,8.00" prototype="corevector.colorize"/>
+        <node name="colorize3" position="16.00,9.00" prototype="corevector.colorize">
+            <port name="fill" type="color" value="#ff040aff"/>
+            <port name="stroke" type="color" value="#ffffffff"/>
+        </node>
+        <node name="combine1" position="5.00,12.00" prototype="list.combine"/>
+        <node name="convert_range1" position="8.00,5.00" prototype="math.convert_range">
+            <port name="source_end" type="float" value="1000.0"/>
+            <port name="target_end" type="float" value="141.0"/>
+        </node>
+        <node name="distance1" position="8.00,0.00" prototype="math.distance"/>
+        <node name="frame1" position="0.00,0.00" prototype="core.frame"/>
+        <node name="grid1" position="3.00,-2.00" prototype="corevector.grid">
+            <port name="columns" type="int" value="29"/>
+            <port name="rows" type="int" value="26"/>
+            <port name="width" type="float" value="500.0"/>
+            <port name="height" type="float" value="500.0"/>
+        </node>
+        <node name="hsb_color1" position="8.00,7.00" prototype="color.hsb_color">
+            <port name="hue" type="float" value="150.0"/>
+            <port name="saturation" type="float" value="280.0"/>
+            <port name="brightness" type="float" value="325.0"/>
+        </node>
+        <node name="max1" position="11.00,4.00" prototype="math.max"/>
+        <node name="min1" position="8.00,4.00" prototype="math.min"/>
+        <node name="multiply1" position="0.00,1.00" prototype="math.multiply">
+            <port name="value2" type="float" value="-6.0"/>
+        </node>
+        <node name="rect1" position="4.00,4.00" prototype="corevector.rect">
+            <port name="width" type="float" value="40.0"/>
+            <port name="height" type="float" value="25.0"/>
+        </node>
+        <node name="rect2" position="0.00,7.00" prototype="corevector.rect">
+            <port name="width" type="float" value="500.0"/>
+            <port name="height" type="float" value="500.0"/>
+        </node>
+        <node name="rect3" position="15.00,4.00" prototype="corevector.rect">
+            <port name="width" type="float" value="1.0"/>
+            <port name="height" type="float" value="4.0"/>
+        </node>
+        <node name="rotate1" position="5.00,6.00" prototype="corevector.rotate"/>
+        <node name="rotate2" position="16.00,6.00" prototype="corevector.rotate"/>
+        <conn input="distance1.point2" output="grid1"/>
+        <conn input="convert_range1.value" output="distance1"/>
+        <conn input="rect1.position" output="grid1"/>
+        <conn input="colorize1.fill" output="hsb_color1"/>
+        <conn input="min1.values" output="distance1"/>
+        <conn input="convert_range1.source_start" output="min1"/>
+        <conn input="max1.values" output="distance1"/>
+        <conn input="convert_range1.source_end" output="max1"/>
+        <conn input="combine1.list2" output="colorize1"/>
+        <conn input="rotate1.shape" output="rect1"/>
+        <conn input="colorize1.shape" output="rotate1"/>
+        <conn input="rotate1.origin" output="grid1"/>
+        <conn input="add1.value2" output="distance1"/>
+        <conn input="rotate1.angle" output="add1"/>
+        <conn input="add2.value2" output="distance1"/>
+        <conn input="rect1.width" output="add2"/>
+        <conn input="multiply1.value1" output="frame1"/>
+        <conn input="add1.value1" output="multiply1"/>
+        <conn input="colorize2.shape" output="rect2"/>
+        <conn input="combine1.list1" output="colorize2"/>
+        <conn input="hsb_color1.brightness" output="convert_range1"/>
+        <conn input="rect3.position" output="grid1"/>
+        <conn input="rotate2.shape" output="rect3"/>
+        <conn input="colorize3.shape" output="rotate2"/>
+        <conn input="rotate2.origin" output="grid1"/>
+        <conn input="rotate2.angle" output="add1"/>
+        <conn input="combine1.list3" output="colorize3"/>
+    </node>
+</ndbx>
