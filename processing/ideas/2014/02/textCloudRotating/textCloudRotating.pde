@@ -4,6 +4,10 @@ PVector[] pos = new PVector[27];
 void setup() {
   size(600, 600, P3D);
   
+  // this seems to get rid of opaque 
+  // backgrounds around the letters
+  hint(DISABLE_DEPTH_TEST);
+
   // come up with random positions for each letter 
   for(int i=0; i<pos.length; i++) {
     pos[i] = PVector.random2D();
@@ -19,7 +23,7 @@ void draw() {
     
     // put the origin horizontally in the middle of the screen,
     // vertically somewhere random around the center
-    translate(width/2, map(pos[i].y, -1, 1, height*0.33, height*0.66));
+    translate(width/2, map(pos[i].y, -1, 1, height*0.4, height*0.6));
     
     // slowly rotate, each letter gets its own rotation
     rotateY(frameCount * 0.01 + i);
