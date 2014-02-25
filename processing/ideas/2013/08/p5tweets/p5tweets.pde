@@ -178,11 +178,13 @@
 //int id=43; String name="Rainbow after a hard day of work"; String ext="png";
 //float i;void setup(){size(900,900,P3D);}void draw(){translate(450+450*cos(i*.9),600+400*sin(i+=.01)*noise(i));sphere(30/noise(i));}//#p5
 
+//int id=44; String name="Orbit"; String ext="png";
+//int i;void setup(){size(900,900,P3D);}void draw(){translate(i%900,600);rotateX(++i*.01);rotateZ(i*.019);translate(700,0);sphere(9);}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
 // new tweet goes here...
-
 
 void keyPressed() {
   if(key=='s')
