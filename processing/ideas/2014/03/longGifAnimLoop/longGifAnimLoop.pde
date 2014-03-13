@@ -1,5 +1,4 @@
 import gifAnimation.*;
-import processing.opengl.*;
 
 int totalFrames = 39;
 int framesToSave = 0;
