@@ -10,6 +10,4 @@ void viz1() {
       point(data.sx(dx), data.sy(dy));
     }
   }
-  
-  rendered = true;
 }

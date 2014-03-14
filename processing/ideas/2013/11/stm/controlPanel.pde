@@ -17,11 +17,12 @@ public class ControlFrame extends PApplet {
   int abc = 100;
   RadioButton fileList, modeList;
   File[] files;
+  Slider2D rotation;
 
   public void setup() {
     size(w, h);
     background(0);    
-    frameRate(15);
+    frameRate(10);
 
     cp5 = new ControlP5(this);
 
@@ -42,25 +43,45 @@ public class ControlFrame extends PApplet {
     modeList.setNoneSelectedAllowed(true);
     modeList.activate(0);
     
-    cp5.addButton("saveImage")
+    cp5.addButton("render")
       .setPosition(10, 180);
+    
+    cp5.addButton("saveImage")
+      .setPosition(10, 200);
+      
+    rotation = cp5.addSlider2D("rotation")
+         .setPosition(10,220)
+         .setSize(100,100)
+         .setArrayValue(new float[] {18, 66});    
   }
 
   void fileList(int i) {
     dataLoader.load(i);
   }
   void modeList(int i) {
-    do_render(i);
+    vizMode = i;
+  }
+  void render() {
+    rendered = false;
   }
   void saveImage(int i) {
     saveRequested = true;
   }
 
   public void draw() {
+    background(0);
   }
 
   public void setFiles(File[] files) {
     this.files = files;
+  }
+  
+  public float[] getRotation() {
+    float[] f = {
+      map(rotation.arrayValue()[0], 0, 100, 0, 1), 
+      map(rotation.arrayValue()[1], 0, 100, 0, 1)
+    }; 
+    return f;
   }
   
   private ControlFrame() {

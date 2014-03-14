@@ -28,7 +28,7 @@ void viz2() {
       translate(data.px(dx)-0.5, data.py(dy)-1);
 
       noStroke();
-      fill((-60+val * 256) % 512, sin(val * 10) * 128 + 128, sin(val * 7) * 100 + 150);
+      fill((-60+val * 256) % 256, sin(val * 10) * 128 + 128, sin(val * 7) * 100 + 150);
       box(0.003, 0.003, val/2);
 
       if (val > data.topThreshold) {
@@ -40,21 +40,5 @@ void viz2() {
     }
   }
   popMatrix();
-
-  rendered = true;
-}
-
-void drawGradient(color a, color b) {
-  for (int y=0; y<height; y++) {
-    stroke(lerpColor(a, b, y/float(height)));
-    line(0, y, width, y);
-  }
-}
-
-void drawStars() {
-  for (int i=0; i<300; i++) {
-    stroke(255, random(255));
-    point(random(width), random(height), 1);
-  }
 }
 

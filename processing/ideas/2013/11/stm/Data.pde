@@ -27,8 +27,8 @@ class Data {
     String path = f.getAbsolutePath();
     reader = createReader(path);
     
-    vmin = 9999; 
-    vmax = -9999;
+    vmin = Integer.MAX_VALUE; 
+    vmax = Integer.MIN_VALUE;
     
     int y = 0;
     while (true) {

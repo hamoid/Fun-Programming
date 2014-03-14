@@ -10,6 +10,4 @@ void viz3() {
   for (int i=0; i<data.histogram.length; i++) {
     rect(i*bandWidth, height-height*data.histogram[i], bandWidth, height);
   }
-   
-  rendered = true;
 }
