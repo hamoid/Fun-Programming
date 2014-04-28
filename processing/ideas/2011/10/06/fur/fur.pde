@@ -1,5 +1,5 @@
 void setup() {
-  size(400, 400);
+  size(400, 400, P2D);
   background(0);
   smooth();
   colorMode(HSB, 1.0);
@@ -26,6 +26,8 @@ void draw() {
   }
 }
 void keyPressed() {
-  int n = int(random(100000));
-  save(n + ".png");
+  if(key == 's') {
+    int n = int(random(100000));
+    save(n + ".png");
+  }
 }
