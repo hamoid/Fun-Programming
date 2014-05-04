@@ -11,7 +11,7 @@
  
 Ring[] ring;
 int[] colors = { 
-  160, 70, 110
+  160, 70, 110 // these must be in the right order: brightest, darkest, middle.
 };
 int framesTotal = 100, framesToSave = 0;
 
