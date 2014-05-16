@@ -18,7 +18,7 @@ class TerrainSimpleRender {
     PVector water = new PVector();
 
     // Using nested loops instead of one loop does not make
-    // a significant different in rendering speed  
+    // a significant difference in rendering speed  
     for (int y = 0; y < tData.tSize; y++) {
       for (int x = 0; x < tData.tSize; x++) {
         float val = tData.getp(x, y);
