@@ -46,7 +46,7 @@ class TerrainSimpleRender {
   }
   private void drawRect(PVector a, PVector b, int maxSurfaceThickness) {
     if (b.y < a.y) return;
-    // Using integers greatly reduces rendering time
+    // Using integers greatly reduces rendering time but looks worse
     if(fast) {
       rect(floor(a.x), floor(a.y), ceil(b.x-a.x), min(ceil(b.y-a.y), maxSurfaceThickness));
     } else {
