@@ -90,17 +90,17 @@ class Ring {
     float a0, a1;
     int currFrame;
     currFrame = testing ? framesTotal / 2 : frameCount % framesTotal;
-    int halfFrame = framesTotal / 2;
-    if (currFrame < halfFrame) {
-      int frm0 = id * halfFrame / colors.length;
-      int frm1 = (id+1) * halfFrame / colors.length;
+    int middleFrame = framesTotal / 2;
+    if (currFrame < middleFrame) {
+      int frm0 = id * middleFrame / colors.length;
+      int frm1 = (id+1) * middleFrame / colors.length;
       a0 = 0;
       a1 = map(currFrame, frm0, frm1, 0, TWO_PI);
       a1 = constrain(a1, 0, TWO_PI);
     } 
     else {
-      int frm0 = halfFrame + id * halfFrame / colors.length;
-      int frm1 = halfFrame + (id+1) * halfFrame / colors.length;
+      int frm0 = middleFrame + id * middleFrame / colors.length;
+      int frm1 = middleFrame + (id+1) * middleFrame / colors.length;
       a0 = map(currFrame, frm0, frm1, 0, TWO_PI);
       a0 = constrain(a0, 0, TWO_PI);
       a1 = TWO_PI;
