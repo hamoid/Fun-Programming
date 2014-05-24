@@ -70,7 +70,7 @@ void drawEffects() {
 }
 class Ring {
   float angleOffset, rad0, rad1, x, y;
-  int c, id;
+  int colour, id;
   Ring(int id) {
     this.id = id;
     this.angleOffset = id * TWO_PI / colors.length;
@@ -80,7 +80,7 @@ class Ring {
     rad1 = r1;
   }
   void setColor(int c) {
-    this.c = c;
+    this.colour = c;
   }
   void setPos(float x, float y) {
     this.x = x;
@@ -88,26 +88,26 @@ class Ring {
   }
   void draw(boolean testing) {
     float a0, a1;
-    int cframe;
-    cframe = testing ? framesTotal / 2 : frameCount % framesTotal;
-    int hframe = framesTotal / 2;
-    if (cframe < hframe) {
-      int frm0 = id * hframe / colors.length;
-      int frm1 = (id+1) * hframe / colors.length;
+    int currFrame;
+    currFrame = testing ? framesTotal / 2 : frameCount % framesTotal;
+    int halfFrame = framesTotal / 2;
+    if (currFrame < halfFrame) {
+      int frm0 = id * halfFrame / colors.length;
+      int frm1 = (id+1) * halfFrame / colors.length;
       a0 = 0;
-      a1 = map(cframe, frm0, frm1, 0, TWO_PI);
+      a1 = map(currFrame, frm0, frm1, 0, TWO_PI);
       a1 = constrain(a1, 0, TWO_PI);
     } 
     else {
-      int frm0 = hframe + id * hframe / colors.length;
-      int frm1 = hframe + (id+1) * hframe / colors.length;
-      a0 = map(cframe, frm0, frm1, 0, TWO_PI);
+      int frm0 = halfFrame + id * halfFrame / colors.length;
+      int frm1 = halfFrame + (id+1) * halfFrame / colors.length;
+      a0 = map(currFrame, frm0, frm1, 0, TWO_PI);
       a0 = constrain(a0, 0, TWO_PI);
       a1 = TWO_PI;
     }
     a0 += angleOffset;
     a1 += angleOffset;
-    fill(c);
+    fill(colour);
     pushMatrix();
     translate(x, y);
     beginShape(QUAD_STRIP);
