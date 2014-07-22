@@ -184,10 +184,16 @@
 //int id=45; String name="Barbwire"; String ext="png";
 //int i;void setup(){size(900,900);noStroke();}void draw(){translate(i*3%910,i*7%900);fill(i%90*3);rotate(++i);rect(0,0,i%90,i%89);}//#p5
 
+//int id=46; String name="Fake"; String ext="jpg";
+//int i;void setup(){size(900,900);}void draw(){translate(i%900,450);blendMode(2+i%2);rotate(i++);rect(i/20,0,400,i%20);fill(i);}//#p5
+
+//int id=47; String name="Complicated trip to a beautiful place"; String ext="jpg";
+//int j;void setup(){size(900,900);}void draw(){PImage i=get();filter(INVERT);rotate(sin(j*.01));image(i,j++%450,-(j%133)/10);}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
 
-// new tweet goes here...
+
 
 void keyPressed() {
   if(key=='s')
