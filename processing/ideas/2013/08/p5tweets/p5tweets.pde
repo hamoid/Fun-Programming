@@ -190,9 +190,11 @@
 //int id=47; String name="Complicated trip to a beautiful place"; String ext="jpg";
 //int j;void setup(){size(900,900);}void draw(){PImage i=get();filter(INVERT);rotate(sin(j*.01));image(i,j++%450,-(j%133)/10);}//#p5
 
+//int id=48; String name="Negating is creating"; String ext="png";
+//int j;void setup(){size(900,900);frameRate(2);}void draw(){filter(INVERT);tint(++j%255,30,0);rotate(sin(j));image(get(),j*9%500,j%90);}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
-
 
 
 void keyPressed() {
