@@ -45,7 +45,7 @@ void draw() {
   println(normal_);
 
   // Read toxiclibs source code to see difference in implementation between: 
-  // .sub()           line 1455 (returns new copy) http://bit.ly/vec3D_1455
+  // .sub()           line 1455 (returns new copy) http://bit.ly/Vec3D_1455
   // .subSelf()       line 1482 (returns this)     http://bit.ly/Vec3D_1482
   // .getCartesian(), line  538 (returns new copy) http://bit.ly/Vec3D_538
   // .toCartesian()   line 1536 (returns this)     http://bit.ly/Vec3D_1536
