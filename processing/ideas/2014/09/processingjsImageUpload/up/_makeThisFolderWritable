@@ -1,0 +1,8 @@
+Find online how to make a folder writable by PHP.
+
+For example, if using a SSH terminal, you could change it's owner like this:
+sudo chown www-data:www-data up/
+
+(assuming www-data is the Apache user)
+
+You only need to do this once.
