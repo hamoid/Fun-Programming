@@ -17,9 +17,10 @@ void mousePressed() {
 main: 
   for (int i=0; i<pixels.length; i++) {
     if (pixels[i] == black) {
-      // a precalculated lookup tabel of pixes
-      // sorted by distance would be more efficient
-      // as this tests some pixels multiple times
+      // A "precalculated lookup table of pixels
+      // sorted by distance" would be more efficient
+      // than this. Here pixels are tested multiple times
+      // (better to repeat pixels than to miss some?)
       for (float dist=1; dist<width; dist+=0.6) {
         float aDelta = TAU / (3 + pow(dist, 2.1));
         for (float a=0; a<TAU; a += aDelta) {
