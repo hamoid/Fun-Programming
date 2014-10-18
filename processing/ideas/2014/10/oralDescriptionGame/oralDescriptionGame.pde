@@ -1,7 +1,7 @@
 // Creative Code Jam - Berlin - 18.10.2014
 // By @hamoid
 
-// In this game-exercise, we hear a verbal description
+// In this game-exercise, we hear a oral description
 // of an animated gif, and try to recreate it based
 // only on that description. At the end we are shown the
 // original and discover how close we were. 
