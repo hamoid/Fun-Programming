@@ -5,7 +5,9 @@
 // of an animated gif, and try to recreate it based
 // only on that description. At the end we are shown the
 // original and discover how close we were. 
-// Here you can see both side by side:
+// This is the original (by Dave Whyte):
+// https://dribbble.com/shots/1696376-Circle-wave
+// and both programs running side by side:
 // https://twitter.com/sableRaph/status/523516372895412225
 
 int steps = 500;
