@@ -14,6 +14,14 @@ import java.io.*;
   
 */
 
+// Quality settings. 
+// -qp 0 means losless
+// -crf 23 is the default
+// Lower crf means better quality
+// http://slhck.info/articles/crf
+// https://trac.ffmpeg.org/wiki/Encode/H.264
+// https://video.stackexchange.com/questions/10463/h264-settings-for-large-flat-areas-of-slowly-changing-colour
+
 class VideoOutput {
   File ffmpeg_output_msg;
   ProcessBuilder pb;
@@ -38,7 +46,7 @@ class VideoOutput {
     "-i", "-", // pipe:0 
     "-an", // no audio
     "-vcodec", "h264", 
-    "-crf", "15", // https://video.stackexchange.com/questions/10463/h264-settings-for-large-flat-areas-of-slowly-changing-colour
+    "-crf", "15", 
     //"-b:v", "3000k", // video bit rate
     sketchPath + "/" + filename);
 
