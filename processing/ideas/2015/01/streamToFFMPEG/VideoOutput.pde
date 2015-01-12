@@ -62,9 +62,9 @@ class VideoOutput {
     for (int i=0; i<pg.pixels.length; i++) {
       final int px = pg.pixels[i];
       final int i3 = i * 3;
-      pixelsByte[i3] = (byte)(px >> 16 & 0xFF);
-      pixelsByte[i3 + 1] = (byte)(px >> 8 & 0xFF);
-      pixelsByte[i3 + 2] = (byte)(px & 0xFF);
+      pixelsByte[i3] = (byte)(px >> 16);
+      pixelsByte[i3 + 1] = (byte)(px >> 8);
+      pixelsByte[i3 + 2] = (byte)(px);
     }
     try {
       ffmpegInput.write(pixelsByte);
