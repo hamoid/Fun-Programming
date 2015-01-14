@@ -4,10 +4,10 @@ void setup() {
   size(800, 600);
   frameRate(30);
   
-  vo = new VideoOutput(this.g, sketchPath, "circle.mp4", 30);
+  vo = new VideoOutput(this.g, sketchPath, "rectangle.mp4", 30);
 }
 void draw() {
-  background(0);
+  background(#4D740C);
     
   pushMatrix();
   translate(width/2 + width/4 * sin(frameCount * 0.013), height/2 + height/4 * cos(frameCount * 0.013));
@@ -19,9 +19,10 @@ void draw() {
     vo.saveFrame();
     text("Recording...", 80, 80);
   } else {
-    text("Hold mouse button to record.", 80, 80);
+    text("Hold down mouse button to record.", 80, 80);
   }
 }
 void keyPressed() {
   vo.close();
+  exit();
 }
