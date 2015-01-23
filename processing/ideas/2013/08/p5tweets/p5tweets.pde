@@ -193,9 +193,11 @@
 //int id=48; String name="Negating is creating"; String ext="png";
 //int j;void setup(){size(900,900);frameRate(2);}void draw(){filter(INVERT);tint(++j%255,30,0);rotate(sin(j));image(get(),j*9%500,j%90);}//#p5
 
+int id=49; String name="Music"; String ext="png";
+int i=1,s=900;void setup(){size(s,s);}void draw(){for(loadPixels();i++%(s*32)>0;)pixels[i*7%(s*s)]=-i*(i>>19)/s<<i/s/s;updatePixels();}//#p5
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
-
 
 void keyPressed() {
   if(key=='s')
