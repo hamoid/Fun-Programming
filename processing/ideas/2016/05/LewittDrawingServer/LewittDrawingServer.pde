@@ -1,6 +1,18 @@
 import processing.net.*;
 import java.util.Map;
 
+String[] instructions = {
+"Draw together a circle",
+"Draw together one line",
+"Draw together a line perpendicular to the circle",
+"Draw a line parallel to another line",
+"Draw together a square",
+"Be all parallel",
+"All point in the same direction",
+"Be far away from each other",
+"Be close to each other"
+};
+
 Server s;
 Client c;
 int frameNum = 0;
@@ -24,6 +36,10 @@ void setup() {
 
 void draw() {
   image(permanent, 0, 0);
+  
+  fill(255);
+  text(instructions[(millis() / (1000 * 15)) % instructions.length], 30, 30);
+  
   c = s.available();
   if (c != null) {
     input = c.readString();
