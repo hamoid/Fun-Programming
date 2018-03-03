@@ -20,7 +20,7 @@ void setup() {
   frameRate(10);
 }
 void arduino_setup() {
-  println(Arduino.list());
+  printArray(Arduino.list());
   arduino = new Arduino(this, Arduino.list()[1], 57600);
   
   for (int i = 0; i <= 13; i++) {
@@ -51,4 +51,3 @@ void draw() {
     noLoop();
   }
 }
-

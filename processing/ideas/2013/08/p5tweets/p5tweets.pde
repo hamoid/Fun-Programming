@@ -27,6 +27,10 @@
     when I press the 's' key to easily share images with others.
 
     The second line in the pair is the tweet.
+    
+  Note:
+    The p5tweets were originally written for Processing 2.
+    Most are not compatible with Processing 3.
 
   Why are they commented out?
     Because I wanted to have them all in one file. If they were
@@ -49,17 +53,19 @@
 
 */
 
-//int id=1; String name="random(1)*random(1)*random(1)"; String ext="png";
+//int id=1; String name="random(1)*random(1)*random(1)"; String ext="png"; void setup() {
 //size(800,800);for(int x=0;x<800;x++)if(x<800/2)line(x,0,x,random(1)*800);else line(x,0,x,random(1)*random(1)*random(1)*800);//#p5
+//}
 
 //int id=2; String name="RGB noise"; String ext="png";
-//void draw(){loadPixels();int i=0;while(i<10000){pixels[i]=int(random(1<<24));updatePixels();i++;}}//#p5 #processing
+//void draw(){loadPixels();int i=0;while(i<10000){pixels[i]=int(-random(1<<24));updatePixels();i++;}}//#p5 #processing
 
 //int id=3; String name="Monitor kaputt"; String ext="png";
-//void draw(){loadPixels();int i=0;while(i<9999){pixels[i]=int(sin(i/(1+frameCount%250))*127+128)<<(frameCount%16);updatePixels();i++;}}//#p5
+//void draw(){loadPixels();int i=0;while(i<9999){pixels[i]=-int(sin(i/(1+frameCount%250))*127+128)<<(frameCount%16);updatePixels();i++;}}//#p5
 
 //int id=4; String name="RGB TV"; String ext="png";
 //void draw(){loadPixels();int i=0;while(i<10000){pixels[i]=int(8*noise(frameCount+i)+.5)<<((frameCount+i)%24);updatePixels();i++;}}//#p5
+// TODO: test why colors don't work on Processing 3. Negative values work, but colors are different.
 
 //int id=5; String name="Flower"; String ext="png";
 //void draw(){float m=millis()*.0003,r=89*sin(m*5.1)*noise(m);stroke(255,80);if(m<1)background(0);point(49+r*sin(m),49+r*cos(m));}//#p5
@@ -179,10 +185,10 @@
 //float i;void setup(){size(900,900,P3D);}void draw(){translate(450+450*cos(i*.9),600+400*sin(i+=.01)*noise(i));sphere(30/noise(i));}//#p5
 
 //int id=44; String name="Orbit"; String ext="png";
-//int i;void setup(){size(900,900,P3D);}void draw(){translate(i%900,600);rotateX(++i*.01);rotateZ(i*.019);translate(700,0);sphere(9);}//#p5
+//int i;void setup(){fullScreen(P3D);}void draw(){translate(i%900,600);rotateX(++i*.01);rotateZ(i*.019);translate(700,0);sphere(9);}//#p5
 
 //int id=45; String name="Barbwire"; String ext="png";
-//int i;void setup(){size(900,900);noStroke();}void draw(){translate(i*3%910,i*7%900);fill(i%90*3);rotate(++i);rect(0,0,i%90,i%89);}//#p5
+//int i;void setup(){fullScreen();noStroke();}void draw(){translate(i*3%width,i*7%height);fill(i%90*3);rotate(++i);rect(0,0,i%90,i%89);}//#p5
 
 //int id=46; String name="Fake"; String ext="jpg";
 //int i;void setup(){size(900,900);}void draw(){translate(i%900,450);blendMode(2+i%2);rotate(i++);rect(i/20,0,400,i%20);fill(i);}//#p5
@@ -199,8 +205,12 @@
 //int id=50; String name="LHC"; String ext="png";
 //int i;void setup(){size(900,900,P3D);}void draw(){while(++i%900>0){translate(550,550);rotateX(i/6);rotateY(i/7);ellipse(400,0,20,20);}}//#p5
 
+//int id=51; String name="a"; String ext="png";
+//int i,s=900;void setup(){size(s,s,P3D);}void draw(){while(++i%8192>0){stroke(i/90210%256);point(i*(i+(i>>16))%s,i/6502%s,i/1117%s);}}//#p5 
+
 // Ruler. 140 characters long. I develop new tweets under it.
 /////-----/////---20/////-----/////---40/////-----/////---60/////-----/////---80/////-----/////--100/////-----/////--120/////-----/////--140
+
 
 void keyPressed() {
   if(key=='s')
