@@ -9,7 +9,7 @@ void setup() {
 }
 
 void draw() {
-  background(#0ABE00);
+  background(#0f5383);
   translate(width/2, height/2);
   rotate(-frameCount * 0.003);
   layer.update();
@@ -29,8 +29,8 @@ public class CubeLayer extends PGraphics3D {
     beginDraw();
     clear();
     noStroke();
-    directionalLight(100, 20, 10, 1, 1, -1);
-    directionalLight(255, 245, 50, -1, -1, -1);
+    directionalLight(184, 199, 164, 1, 1, -1);
+    directionalLight(237, 208, 172, -1, -1, -1);
     translate(width/2, height/2);
     rotateX(frameCount * 0.01);
     rotateY(1);
