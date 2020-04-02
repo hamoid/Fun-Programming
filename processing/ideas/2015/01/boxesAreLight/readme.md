@@ -12,8 +12,10 @@ Usage:
 - Press [s] to save the view to `thumb.jpg`
 
 The program in action:
+
 ![](https://raw.githubusercontent.com/hamoid/Fun-Programming/master/processing/ideas/2015/01/boxesAreLight/thumb.jpg)
 
 The exported .obj file rendered with Blender
+
 ![](https://raw.githubusercontent.com/hamoid/Fun-Programming/master/processing/ideas/2015/01/boxesAreLight/render.jpg)
 
