@@ -13,8 +13,17 @@ result = subprocess.check_output(execstr, shell=True).split('\n')
 absolutePath = 'https://github.com/hamoid/Fun-Programming/blob/master/processing'
 
 f = open('readme.md', "w")
+
+f.write('| A | B | C |\n')
+f.write('| --- | --- | --- |\n')
+
+col = 0
+
 for line in result:
   if line:
-    f.write('[%s](%s/%s)  \n' % (os.path.basename(line), absolutePath, line))
+    f.write('| [%s](%s/%s/) ' % (os.path.splitext(os.path.basename(line))[0], absolutePath, os.path.dirname(line)))
+    if col % 3 == 2:
+      f.write(' |\n')
+    col = col + 1
 f.close()
 
