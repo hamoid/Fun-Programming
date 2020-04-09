@@ -16,8 +16,9 @@ void thing(float sz) {
 
 void setup() {
   size(800, 800, P3D);
-  beginRecord("nervoussystem.obj.OBJExport", sketchPath + "/recursiveBoxes.obj");
+  beginRecord("nervoussystem.obj.OBJExport", sketchPath("recursiveBoxes.obj"));
   thing(100);
   box(100);
   endRecord();
 }
+void draw() {}
