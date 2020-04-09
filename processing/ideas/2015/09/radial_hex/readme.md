@@ -9,4 +9,4 @@ Mouse click to set the center of rotation.
 
 's' to save
 
-![](https://raw.githubusercontent.com/hamoid/Fun-Programming/master/processing/ideas/2015/09/radial_hex/1584867555448.jpg)
+![](https://raw.githubusercontent.com/hamoid/Fun-Programming/master/processing/ideas/2015/09/radial_hex/thumb.jpg)
