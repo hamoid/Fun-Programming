@@ -10,8 +10,8 @@ PGraphics route;
 PImage glow;
 
 void setup() {
-  size(1000, 1000);
-  files = (new File("/home/funpro/Pictures - Nexus One/Instagram")).listFiles();
+  size(1000, 1000, P2D);
+  files = (new File("/home/funpro/Pictures/n1/Instagram")).listFiles();
 
   glow = createImage(width, height, ARGB);
 

@@ -9,6 +9,7 @@
 PVector[] p;
 void setup() {
   size(1200, 1200);
+  smooth(0);
   colorMode(HSB, 100);
   noStroke();
   doit();
