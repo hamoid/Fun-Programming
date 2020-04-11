@@ -69,6 +69,9 @@ void keyPressed() {
   if(key == ' ') {
     selectInput("Select a small text file", "fileSelected"); 
   }
+  if(key == 's') {
+    save("thumb.png");
+  }
 }
 void fileSelected(File selection) {
   if (selection != null) {
@@ -139,4 +142,3 @@ void shake() {
 float rnd(float a, float b) {
   return map(randomGaussian(), -1, 1, a, b);
 }
-

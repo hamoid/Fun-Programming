@@ -9,3 +9,5 @@ Of course using MIDI has its own limitations. For instance, you don't know if th
 In any case, fun to play with I think.
 
 If you create anything with it, I would be happy if you link it at https://forum.processing.org/two/discussion/comment/116764 for others to see.
+
+![](https://raw.githubusercontent.com/hamoid/Fun-Programming/master/processing/ideas/2017/04/MidiViz/thumb.jpg)
