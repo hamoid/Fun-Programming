@@ -16,16 +16,13 @@ public void setup() {
   colorMode(HSB);
 
   initialize();
-
-  gif = new GifMaker(this, filename);
-  gif.setRepeat(0);
 }
 void initialize() {
   r = new Rect[totalFrames / segmentLength];
   for (int i=0; i<r.length; i++) {
     // pass the previous rectangle if it exists
     // so the new rectangle is based on the last one
-    if(i > 0) {
+    if (i > 0) {
       r[i] = new Rect(r[i-1]);
     } else {
       r[i] = new Rect();
@@ -55,10 +52,10 @@ void draw() {
 
   translate(x, y);
   rotate(a);
-  
+
   fill(frameCount % segmentLength == 0 ? 255 : color(random(255), 255, 255));
   rect(0, 0, w, h);
-  
+
   fill(0);
   rect(0, 0, w-20, h-20);
 
@@ -80,6 +77,8 @@ void draw() {
 void keyPressed() {
   if (key == 's') {
     frameRate(60);
+    gif = new GifMaker(this, filename);
+    gif.setRepeat(0);
     framesToSave = totalFrames;
   }
   if (key == 'r') {
@@ -109,22 +108,21 @@ class Rect {
     h = r.h;
     a = r.a;
     switch(int(random(5))) {
-      case 0:
-        x = width - r.x;
-        break;
-      case 1:
-        y = height - r.y;
-        break;
-      case 2:
-        w = 300 - r.w;
-        break;
-      case 3:
-        h = 300 - r.h;
-        break;
-      case 4:
-        a = r.a + HALF_PI;
-        break;
+    case 0:
+      x = width - r.x;
+      break;
+    case 1:
+      y = height - r.y;
+      break;
+    case 2:
+      w = 300 - r.w;
+      break;
+    case 3:
+      h = 300 - r.h;
+      break;
+    case 4:
+      a = r.a + HALF_PI;
+      break;
     }
   }
 }
-

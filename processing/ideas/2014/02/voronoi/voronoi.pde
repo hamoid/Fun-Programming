@@ -47,4 +47,3 @@ void keyPressed() {
     saveFrame("####.png");
   }
 }
-

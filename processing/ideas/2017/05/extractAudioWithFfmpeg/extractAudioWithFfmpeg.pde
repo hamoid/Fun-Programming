@@ -1,5 +1,7 @@
 import java.io.InputStreamReader;
 
+// ffmpeg should be found on your system, and be in the PATH
+
 void setup() {
   // Create data folder if it doesn't exist
   (new File(dataPath(""))).mkdirs();

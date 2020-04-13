@@ -1,7 +1,0 @@
-void setup() {
-  size(875, 875);
-  colorMode(HSB);
-  background(255);
-}
-void draw() {
-}

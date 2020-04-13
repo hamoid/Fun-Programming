@@ -6,7 +6,7 @@ n = NetAddr("127.0.0.1", 12000);
 SynthDef(\testSound, {
     arg freq, amp;
     var mysound, envelope;
-    mysound = SinOsc.ar([freq, freq*2]);
+    mysound = SinOsc.ar([freq*10, freq*2]);
     envelope = EnvGen.kr(Env.perc, doneAction:2);
     Out.ar(0, mysound * envelope * amp);
 }).add;
@@ -30,3 +30,4 @@ p = Pbind(
     \dur, 0.2
 ).play;
 )
+

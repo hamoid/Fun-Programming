@@ -13,7 +13,7 @@ void setup() {
   size(400, 400);
   background(255);
   smooth();
-  fill(255, 20);
+  fill(255, 10);
   
   for(int i = 0; i<4; i++) {
     bx[i] = random(width);

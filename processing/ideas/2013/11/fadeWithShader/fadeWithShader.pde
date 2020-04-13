@@ -1,7 +1,7 @@
 PShader fade;
 
 void setup() {
-  size(1366, 768, P2D); 
+  size(768, 768, P2D); 
   background(0);
   strokeWeight(3);
   stroke(255);

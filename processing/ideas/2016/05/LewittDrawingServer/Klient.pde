@@ -19,11 +19,7 @@ class Klient {
     this.tx = x;
     this.ty = y;
     this.age = 0;
-  }
-  void click(int down) {
-    click = down;
-  }
-  
+  }  
   void draw(PGraphics pg) {
     x = lerp(x, tx, 0.1);
     y = lerp(y, ty, 0.1);
@@ -41,6 +37,9 @@ class Klient {
   }
   boolean isClicked() {
     return click == 1;
+  }
+  void setClick() {
+    click = 1;
   }
   void unClick() {
     click = 0;

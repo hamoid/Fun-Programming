@@ -1,16 +1,17 @@
+import org.funprogramming.P5Helper;
 import processing.net.*;
 import java.util.Map;
 
 String[] instructions = {
-"Draw together a circle",
-"Draw together one line",
-"Draw together a line perpendicular to the circle",
-"Draw a line parallel to another line",
-"Draw together a square",
-"Be all parallel",
-"All point in the same direction",
-"Be far away from each other",
-"Be close to each other"
+  "Draw together a circle", 
+  "Draw together one line", 
+  "Draw together a line perpendicular to the circle", 
+  "Draw a line parallel to another line", 
+  "Draw together a square", 
+  "Be all parallel", 
+  "All point in the same direction", 
+  "Be far away from each other", 
+  "Be close to each other"
 };
 
 Server s;
@@ -36,10 +37,10 @@ void setup() {
 
 void draw() {
   image(permanent, 0, 0);
-  
+
   fill(255);
-  text(instructions[(millis() / (1000 * 15)) % instructions.length], 30, 30);
-  
+  text(instructions[(millis() / (1000 * 45)) % instructions.length], 30, 30);
+
   c = s.available();
   if (c != null) {
     input = c.readString();
@@ -60,9 +61,8 @@ void draw() {
       }
     }
     if (cmd == 1) {
-      int click = data[2];
       Klient k = clients.get(who);
-      k.click(click);
+      k.setClick();
     }
   }
 
@@ -79,11 +79,16 @@ void draw() {
   if (clicking > 0 && players == clicking) {
     for (Map.Entry e : clients.entrySet()) {
       Klient k = (Klient)e.getValue();
-      if (!k.isOld()) {
+      if (!k.isOld() && k.isClicked()) {
         k.draw(permanent);
         k.unClick();
       }
     }
     save("/tmp/a/" + (frameNum++) + ".gif");
+  }
+}
+void keyPressed() {
+  if (key == 's') {
+    P5Helper.save(this);
   }
 }

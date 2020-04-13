@@ -2,7 +2,7 @@ class DataLoader {
   File[] files;
   
   DataLoader() {
-    File dir = new File(sketchPath);
+    File dir = new File(sketchPath(""));
     files = dir.listFiles(new FilenameFilter() {
       public boolean accept(File dir, String name) {
         name = name.toLowerCase();

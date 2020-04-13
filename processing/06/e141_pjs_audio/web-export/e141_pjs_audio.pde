@@ -12,7 +12,7 @@ void setup() {
   size(200, 200);
   noStroke();
   x = 20;
-  dx = 2;
+  dx = 6;
 }
 void draw() {
   background(100);

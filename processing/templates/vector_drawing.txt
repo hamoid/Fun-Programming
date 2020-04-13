@@ -1,6 +1,0 @@
-void ellipse(PVector p, float r) {
-  ellipse(p.x, p.y, r, r);
-}
-void line(PVector a, PVector b) {
-  line(a.x, a.y, b.x, b.y);
-}

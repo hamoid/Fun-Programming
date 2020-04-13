@@ -21,6 +21,6 @@ void draw() {
 }
 void keyPressed() {
   if(key == 's') {
-    saveFrame();
+    save("thumb.jpg");
   }
 }

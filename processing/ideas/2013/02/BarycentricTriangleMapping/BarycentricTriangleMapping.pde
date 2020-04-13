@@ -32,3 +32,8 @@ void mousePressed() {
   T1 = new Tri();
   T2 = new Tri();
 }
+void keyPressed() {
+  if(key == 's') {
+    save("thumb.png");
+  }
+}

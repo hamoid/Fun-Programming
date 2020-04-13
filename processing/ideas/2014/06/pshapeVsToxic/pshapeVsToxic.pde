@@ -87,7 +87,8 @@ void draw() {
   objects += frameRate - 30;
 
   fill(0);
-  text(modeNames[mode] + ": " + objects + " objects at 30 fps", 50, 50);
+  text(modeNames[mode] + ": " + objects + " objects at " 
+  + (int)frameRate + " fps", 50, 50);
   fill(255);
 
   translate(width/2, height/2);

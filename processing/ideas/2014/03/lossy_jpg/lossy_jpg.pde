@@ -1,3 +1,4 @@
+// Description: load and save a JPG file repeatedly to observe the damage of lossy compression
 String PATH = "/tmp/a.jpg";
 void setup() {
   size(900, 900);
@@ -23,4 +24,3 @@ void draw() {
   text("growth", 120, 200);
   println(frameCount);
 }
-

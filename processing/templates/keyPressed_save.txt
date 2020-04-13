@@ -1,5 +1,0 @@
-void keyPressed() {
-  if(key == 's') {
-    saveFrame("####.tif");
-  }
-}

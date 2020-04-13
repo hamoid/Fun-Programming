@@ -3,7 +3,7 @@ import java.util.Enumeration;
 import processing.net.*;
 
 Client c;
-String serverIP = "192.168.3.196";
+String serverIP = "127.0.0.1";
 String input;
 int[] data;
 int myID;
@@ -21,7 +21,7 @@ void draw() {
   }
 }
 void mousePressed() {
-  c.write(myID + " 1 1\n");
+  c.write(myID + " 1\n");
 }
 
 int getIpLastNumber() {
