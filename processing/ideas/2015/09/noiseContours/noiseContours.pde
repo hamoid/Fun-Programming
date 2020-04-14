@@ -1,13 +1,16 @@
+// Uses the openCV librayr from 
+// https://github.com/cansik/opencv-processing/releases
+
 import gab.opencv.*;
 import java.util.Comparator;
 
 ArrayList<Contour> contoursA, contoursB;
 
 public class ByArea implements Comparator<Contour> {
-    @Override
+  @Override
     public int compare(Contour a, Contour b) {
-        return (int)(b.area() - a.area());
-    }
+    return (int)(b.area() - a.area());
+  }
 }
 void setup() {
   fullScreen();
@@ -15,7 +18,7 @@ void setup() {
   colorMode(HSB);
   int white = color(255);
   float zoom = 0.003;
-  
+
   // Take 1 (odd bands)
   background(0);
   for (int x=0; x<width; x++) {
@@ -43,15 +46,15 @@ void setup() {
 
   // Add take 2 to take 1.
   contoursA.addAll(contoursB);
-  
+
   // find min/max area (optional, may be useful for mapping to colors)
   float minArea = Float.MAX_VALUE, maxArea = Float.MIN_VALUE;
   for (Contour contour : contoursA) {
     float area = sqrt(contour.area());
-    if(area < minArea) {
+    if (area < minArea) {
       minArea = area;
     }
-    if(area > maxArea) {
+    if (area > maxArea) {
       maxArea = area;
     }
   }  
@@ -68,4 +71,10 @@ void setup() {
   }
 }
 void draw() {
+}
+void keyPressed() {
+  if (key =='s') { 
+    save("thumb.png"); 
+    println("saved!");
+  }
 }
