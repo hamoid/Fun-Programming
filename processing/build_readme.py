@@ -7,6 +7,8 @@
 
 import os, os.path, subprocess, re
 
+columns = 5
+
 execstr = "git ls-files ./ | grep -E '.pde|.scd'"
 result = subprocess.check_output(execstr, shell=True).split('\n')
 
@@ -14,8 +16,8 @@ absolutePath = 'https://github.com/hamoid/Fun-Programming/blob/master/processing
 
 f = open('readme.md', "w")
 
-f.write('| . | . | . | . |\n')
-f.write('| --- | --- | --- | --- |\n')
+f.write(('| . ' * columns) + '|\n')
+f.write(('| --- ' * columns) + '|\n')
 
 col = 0
 
@@ -48,7 +50,7 @@ for line in result:
 
     f.write('| [%s%s](%s/%s/) ' % (sketchName, thumb, absolutePath, ideaFolder))
     
-    if col % 4 == 3:
+    if col % columns == (columns - 1):
       f.write(' |\n')
       
     col = col + 1
