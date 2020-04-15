@@ -1,4 +1,4 @@
-// Uses the openCV librayr from 
+// Uses the openCV library from 
 // https://github.com/cansik/opencv-processing/releases
 
 import gab.opencv.*;
