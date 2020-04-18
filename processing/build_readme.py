@@ -43,8 +43,9 @@ for line in result:
     if os.path.exists(ideaFolder + '/.thumb.jpg'):
       t = '%s/.thumb.jpg' % ideaFolder
       thumb = '<br>![](%s)' % t
-      os.system('git add -f %s' % t)
-      print(t)
+      if os.popen('git status -s %s' % t).read().startswith('??'):
+	      os.system('git add -f %s' % t)
+	      print(t)
 
     sketchName = re.sub("([a-z])([A-Z])","\g<1> \g<2>", sketchName.replace('_', ' '))
 
