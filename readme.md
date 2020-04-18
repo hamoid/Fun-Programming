@@ -4,9 +4,9 @@
 In this repository you can find:
 
 - Programs written for the [Fun Programming](https://funprogramming.org) video
-  tutorials: https://github.com/hamoid/Fun-Programming/tree/master/processing/fun-programming
-- My creative coding experiments: https://github.com/hamoid/Fun-Programming/tree/master/processing/ideas
-  You can view some results at https://hamoid.com and at http://hamoid.tumblr.com/archive
+  tutorials: [fun-programming](https://github.com/hamoid/Fun-Programming/tree/master/processing/fun-programming)
+- My creative coding experiments: [processing/ideas](https://github.com/hamoid/Fun-Programming/tree/master/processing/ideas)
+  Index below. You can view some results at https://hamoid.com and at http://hamoid.tumblr.com/archive
 
 Most programs here are written using Processing (http://www.processing.org/).
 Some with SuperCollider (http://supercollider.sourceforge.net/).
@@ -18,8 +18,8 @@ My current tools include [OPENRNDR](https://openrndr.org) and GLSL.
 
 - [x] Create thumbnails
 - [x] Create a visual index
-- [] Upload my sketches, one per day. I should be done in 2020.
-- [] Write a readme.md for each
+- [ ] Upload my sketches, one per day. I should be done in 2020.
+- [ ] Write a readme.md for each
  
 | . | . | . | . | . |
 | --- | --- | --- | --- | --- |
