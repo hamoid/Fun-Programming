@@ -1,3 +1,11 @@
+
+# Fun Programming
+## Code from the video tutorials
+
+https://funprogramming.org
+
+Written using [Processing](https://processing.org)
+
 | . | . | . | . | . |
 | --- | --- | --- | --- | --- |
 | [e002 point line<br>![](01/e002_point_line/.thumb.jpg)](https://github.com/hamoid/Fun-Programming/blob/master/processing/fun-programming/01/e002_point_line/) | [e003 random draw background<br>![](01/e003_random_draw_background/.thumb.jpg)](https://github.com/hamoid/Fun-Programming/blob/master/processing/fun-programming/01/e003_random_draw_background/) | [e004 save open setup framerate<br>![](01/e004_save_open_setup_framerate/.thumb.jpg)](https://github.com/hamoid/Fun-Programming/blob/master/processing/fun-programming/01/e004_save_open_setup_framerate/) | [e005 stroke rgb<br>![](01/e005_stroke_rgb/.thumb.jpg)](https://github.com/hamoid/Fun-Programming/blob/master/processing/fun-programming/01/e005_stroke_rgb/) | [e006 animate line<br>![](01/e006_animate_line/.thumb.jpg)](https://github.com/hamoid/Fun-Programming/blob/master/processing/fun-programming/01/e006_animate_line/)  |
