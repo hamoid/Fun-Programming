@@ -16,6 +16,15 @@ absolutePath = 'https://github.com/hamoid/Fun-Programming/blob/master/processing
 
 f = open('readme.md', "w")
 
+f.write('''
+# Fun Programming
+## Code from the video tutorials
+
+https://funprogramming.org
+
+Written using [Processing](https://processing.org)
+
+''')
 f.write(('| . ' * columns) + '|\n')
 f.write(('| --- ' * columns) + '|\n')
 

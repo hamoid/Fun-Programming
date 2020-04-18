@@ -6,8 +6,8 @@ In this repository you can find:
 - Programs written for the [Fun Programming](https://funprogramming.org) video
   tutorials: [fun-programming](https://github.com/hamoid/Fun-Programming/tree/master/processing/fun-programming)
 - My creative coding experiments: [processing/ideas](https://github.com/hamoid/Fun-Programming/tree/master/processing/ideas).
-  These are not finished work, but more small tests I do while developing a project.
-  See the index below. You can view some results at https://hamoid.com and at http://hamoid.tumblr.com/archive
+  These are not finished work but tests I do while developing a project or experiments done just for fun and out of curiosity.
+  Index below. You can view some results at https://hamoid.com and at http://hamoid.tumblr.com/archive
 
 Most programs here are written using [Processing](http://www.processing.org/).
 Some with [SuperCollider](https://supercollider.github.io/).
