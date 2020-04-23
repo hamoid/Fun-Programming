@@ -5,7 +5,7 @@
 # resulting list to the file "readme.md",
 # which GitHub uses as a read me file.
 
-import os, os.path, subprocess, re
+import os, os.path, subprocess, re, cgi
 
 columns = 5
 
@@ -45,6 +45,11 @@ My current tools include [OPENRNDR](https://openrndr.org) and GLSL.
 f.write(('| . ' * columns) + '|\n')
 f.write(('| --- ' * columns) + '|\n')
 
+def cleanhtml(raw_html):
+  cleanr = re.compile('<.*?>')
+  cleantext = re.sub(cleanr, '', raw_html)
+  return cleantext
+
 col = 0
 
 for line in result:
@@ -56,8 +61,21 @@ for line in result:
     if line.endswith('.pde'):
       if sketchName not in ideaFolder.split('/'):
         continue
+    
+    description = ""
+    # Build description
+    if os.path.exists(ideaFolder + '/readme.md'):
+      rmf = open(ideaFolder + '/readme.md', 'r')
+      lines = rmf.readlines()
+      rmf.close()
+      for line in lines:
+        if not (line.startswith('#') or line.startswith('!')):
+          description = description + line.strip() + ' '
+      description = cleanhtml(description)
+      description = cgi.escape(description, True)
 
     thumb = ""
+    # If there is no .thumb.jpg, create it from thumb.png or thumb.jpg
     if not os.path.exists(ideaFolder + '/.thumb.jpg'):
       if os.path.exists(ideaFolder + '/thumb.png'):
         os.system('imgToSquare.fish %s/thumb.png 150 %s/.thumb.jpg' % (ideaFolder, ideaFolder))
@@ -66,12 +84,14 @@ for line in result:
         os.system('imgToSquare.fish %s/thumb.jpg 150 %s/.thumb.jpg' % (ideaFolder, ideaFolder))
         os.system('git add -f %s/thumb.jpg' % ideaFolder)
 
+    # If there is .thumb.jpg and not yet on git, add it
     if os.path.exists(ideaFolder + '/.thumb.jpg'):
       t = '%s/.thumb.jpg' % ideaFolder
-      thumb = '<br>![](%s)' % t
+      thumb = '<br><img src="%s" title="%s">' % (t, description)
       if os.popen('git status -s %s' % t).read().startswith('??'):
-	      os.system('git add -f %s' % t)
-	      print(t)
+        os.system('git add -f %s' % t)
+        print(t)
+
 
     sketchName = re.sub("([a-z])([A-Z])","\g<1> \g<2>", sketchName.replace('_', ' '))
 
