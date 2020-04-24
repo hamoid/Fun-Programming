@@ -95,11 +95,8 @@ for line in result:
     tags = ""
     # If there is .tags, read it
     if os.path.exists(ideaFolder + '/.tags'):
-      tagsf = open(ideaFolder + '/.tags', 'r')
-      lines = tagsf.readlines()
-      tagsf.close()
-      for line in lines:
-          tags = tags + line.strip() + ' '
+      with open(ideaFolder + '/.tags', 'r') as tagsf:
+        tags = tagsf.read().replace('\n', '').replace(',', ', ')
       tags = cleanhtml(tags)
       tags = "<br><sub>" + cgi.escape(tags, True) + "</sub>"
 
