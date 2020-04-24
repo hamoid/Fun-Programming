@@ -92,10 +92,20 @@ for line in result:
         os.system('git add -f %s' % t)
         print(t)
 
+    tags = ""
+    # If there is .tags, read it
+    if os.path.exists(ideaFolder + '/.tags'):
+      tagsf = open(ideaFolder + '/.tags', 'r')
+      lines = tagsf.readlines()
+      tagsf.close()
+      for line in lines:
+          tags = tags + line.strip() + ' '
+      tags = cleanhtml(tags)
+      tags = "<br><sub>" + cgi.escape(tags, True) + "</sub>"
 
     sketchName = re.sub("([a-z])([A-Z])","\g<1> \g<2>", sketchName.replace('_', ' '))
 
-    f.write('| [%s%s](%s/%s/) ' % (sketchName, thumb, absolutePath, ideaFolder))
+    f.write('| [%s%s](%s/%s/) %s ' % (sketchName, thumb, absolutePath, ideaFolder, tags))
     
     if col % columns == (columns - 1):
       f.write(' |\n')
