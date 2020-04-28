@@ -1,3 +1,5 @@
+#!/usr/bin/python2
+
 # This Python script finds recursively all
 # Processing and SuperCollider programs
 # under the current directory that have
