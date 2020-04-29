@@ -33,7 +33,7 @@ Most programs here are written using [Processing](http://www.processing.org/).
 Some with [SuperCollider](https://supercollider.github.io/).
 They are great for creating static / animated / interactive graphics and sound synthesis.
 
-My current tools include [OPENRNDR](https://openrndr.org) and GLSL.
+My current tools include [OPENRNDR](https://openrndr.discourse.group/t/doodles-wall-c/51/3) and [GLSL](https://hamoid.com/post/in-the-mood-for-shaders/).
 
 ### Roadmap
 
