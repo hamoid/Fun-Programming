@@ -1,6 +1,6 @@
 # bezier_similarity
 
-I mildly interactive sketch. The mouseX position sets the length of the drawn lines.
+A mildly interactive sketch. The mouseX position sets the length of the drawn lines.
 [space] clears the background.
 
 Lines are drawn starting on a circle, the exact point advancing clockwise. For each line
