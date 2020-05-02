@@ -1,0 +1,10 @@
+# recursiveTree
+
+Draws an animated loop of an aggresive generative tree.
+
+Not meant for real time consumption but for producing an animated GIF file.
+
+The [space] key randomizes the seed to produce different looking trees.
+
+![](https://raw.githubusercontent.com/hamoid/Fun-Programming/master/processing/ideas/2015/06/recursiveTree/thumb.png)
+
