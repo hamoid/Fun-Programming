@@ -1,5 +1,6 @@
 import java.util.List;
-// from https://stackoverflow.com/questions/1073336/circle-line-segment-collision-detection-algorithm
+
+// see https://stackoverflow.com/questions/1073336/circle-line-segment-collision-detection-algorithm
 
 PVector p0 = new PVector(100.0, 100.0);
 PVector p1 = new PVector(400.0, 400.0);
